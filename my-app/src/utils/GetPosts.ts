@@ -2,7 +2,7 @@ import {API_URL} from "../config";
 
 async function GetPost() {
   try {
-    const response = await fetch(`${API_URL}/api/blogs`, {
+    const response = await fetch(`${API_URL}/api/blogs?populate=*`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
