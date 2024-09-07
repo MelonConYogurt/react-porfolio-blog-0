@@ -2,8 +2,16 @@ import Image from "next/image";
 import GetPost from "@/utils/GetPosts";
 
 async function Getata() {
-  const data = await GetPost();
-  return data;
+  try {
+    const data = await GetPost();
+    if (data) {
+      return data;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default async function Home() {
@@ -34,9 +42,9 @@ export default async function Home() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M1 1h15M1 7h15M1 13h15"
                     />
                   </svg>
@@ -146,9 +154,9 @@ export default async function Home() {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M1 5h12m0 0L9 1m4 4L9 9"
                       />
                     </svg>
@@ -160,7 +168,7 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className="bg-white  shadow  dark:bg-gray-800 ">
+      <footer className="bg-white  shadow  dark:bg-gray-800 fixed bottom-0 w-full">
         <div className="w-full  p-4 md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
