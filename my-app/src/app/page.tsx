@@ -16,7 +16,6 @@ async function Getata() {
 
 export default async function Home() {
   const data = await Getata();
-  console.log(data);
 
   return (
     <div className="bg-white">

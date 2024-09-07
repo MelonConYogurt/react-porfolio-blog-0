@@ -17,7 +17,6 @@ async function GetPost() {
     }
   } catch (error) {
     console.log("Error");
-    return false;
   }
 }
 
