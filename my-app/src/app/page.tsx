@@ -9,10 +9,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {Input} from "@/components/ui/input";
-import {GithubIcon, LinkedinIcon, TwitterIcon} from "lucide-react";
+import {Car, GithubIcon, LinkedinIcon, TwitterIcon} from "lucide-react";
 import {ScrollArea} from "@/components/ui/scroll-area";
 
 import GetPost from "@/utils/GetPosts";
+import GetTg from "@/utils/GetTg";
 
 async function getData() {
   try {
@@ -24,8 +25,19 @@ async function getData() {
   }
 }
 
+async function GetTgs() {
+  try {
+    const tgs = await GetTg();
+    return tgs || [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
 export default async function Component() {
   const data = await getData();
+  const tgs = await GetTgs();
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">
@@ -116,10 +128,28 @@ export default async function Component() {
                     </CardFooter>
                   </Card>
                 ))}
+              <Button className="text-black bg-white w-fit" variant={"outline"}>
+                View All Post
+              </Button>
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 flex flex-col items-center justify-center">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center text-black">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
+            Tech Stack
+          </h2>
+          <div className="flex flex-wrap gap-1">
+            {tgs.map((element, index) => (
+              <div
+                key={index}
+                className="h-auto w-auto rounded-md border border-black m-2 p-2"
+              >
+                <p>{element.attributes.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
               Stay Updated
