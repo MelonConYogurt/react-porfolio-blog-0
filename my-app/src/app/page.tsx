@@ -118,15 +118,15 @@ export default async function Home() {
       </header>
 
       <main>
-        <section className="flex flex-col justify-center items-center mt-40 bg-gray-100">
+        <section className="flex flex-col justify-center items-center mt-40 bg-gray-100 ">
           <h1 className="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black mt-20">
             Featured Posts
           </h1>
-          <div className="flex flex-wrap justify-center items-center gap-5 mx-10 mt-20 mb-20">
+          <div className="flex flex-wrap justify-center items-center gap-5 mx-10 mt-20 mb-20 ">
             {data.map((post, index) => (
               <div
                 key={index}
-                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-[400px] relative"
               >
                 <a href="#">
                   <img
@@ -141,12 +141,12 @@ export default async function Home() {
                       {post.attributes.title}
                     </h5>
                   </a>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-64 overflow-hidden">
                     {post.attributes.description}
                   </p>
                   <a
                     href="#"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 absolute bottom-0 mb-5"
                   >
                     Read more
                     <svg
@@ -172,7 +172,7 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className="bg-white  shadow  dark:bg-gray-800 fixed bottom-0 w-full">
+      <footer className="bg-white  shadow  dark:bg-gray-800 w-full">
         <div className="w-full  p-4 md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}

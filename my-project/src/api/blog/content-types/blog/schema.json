@@ -24,7 +24,7 @@
       },
       "type": "string",
       "required": true,
-      "maxLength": 150,
+      "maxLength": 80,
       "unique": true,
       "minLength": 1
     },
