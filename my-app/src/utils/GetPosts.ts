@@ -8,6 +8,7 @@ async function GetPost() {
         "Content-Type": "application/json",
       },
     });
+
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     } else {
@@ -16,7 +17,7 @@ async function GetPost() {
       return data;
     }
   } catch (error) {
-    console.log("Error");
+    console.log("Error", error);
   }
 }
 

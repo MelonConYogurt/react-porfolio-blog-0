@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import GetPost from "@/utils/GetPosts";
-import {API_URL} from "../config";
 
 async function Getata() {
   try {
@@ -126,12 +125,15 @@ export default async function Home() {
             {data.map((post, index) => (
               <div
                 key={index}
-                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-[400px] relative"
+                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-[600px]  relative"
               >
                 <a href="#">
                   <img
                     className="rounded-t-lg"
-                    src={`${API_URL}${post.attributes.imageCover.data.attributes.formats.thumbnail.url}`}
+                    src={
+                      post.attributes.imageCover.data.attributes.formats.small
+                        .url
+                    }
                     alt=""
                   />
                 </a>
