@@ -1,210 +1,161 @@
 /* eslint-disable @next/next/no-img-element */
+import {Button} from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {Input} from "@/components/ui/input";
+import {GithubIcon, LinkedinIcon, TwitterIcon} from "lucide-react";
+import {ScrollArea} from "@/components/ui/scroll-area";
+
 import GetPost from "@/utils/GetPosts";
 
-async function Getata() {
+async function getData() {
   try {
     const data = await GetPost();
-    if (data) {
-      return data;
-    } else {
-      return [];
-    }
+    return data || [];
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return [];
   }
 }
 
-export default async function Home() {
-  const data = await Getata();
+export default async function Component() {
+  const data = await getData();
 
   return (
-    <div className="bg-white">
-      <header>
-        <section>
-          <div>
-            <nav className="bg-white">
-              <div className="max-w-screen-xl flex flex-wrap items-center justify-end mr-2 ml-auto p-4">
-                <button
-                  data-collapse-toggle="navbar-solid-bg"
-                  type="button"
-                  className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                  aria-controls="navbar-solid-bg"
-                  aria-expanded="false"
-                >
-                  <span className="sr-only">Open main menu</span>
-                  <svg
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 17 14"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M1 1h15M1 7h15M1 13h15"
-                    />
-                  </svg>
-                </button>
-                <div
-                  className="hidden w-full md:block md:w-auto"
-                  id="navbar-solid-bg"
-                >
-                  <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-                    <li>
-                      <a
-                        href="#"
-                        className="block py-2 px-3 md:p-0 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
-                        aria-current="page"
-                      >
-                        Home
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-                      >
-                        Sobre mi
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-                      >
-                        Proyectos
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-                      >
-                        Blog
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+    <div className="flex flex-col min-h-screen justify-center items-center">
+      <header className="self-end px-4 lg:px-6 h-14 flex items-center">
+        <a className="flex items-center justify-center" href="#">
+          <span className="sr-only">Full Stack Dev Blog</span>
+        </a>
+        <nav className="ml-auto flex gap-4 sm:gap-6 text-black">
+          <a
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#"
+          >
+            Home
+          </a>
+          <a
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#"
+          >
+            About
+          </a>
+          <a
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#"
+          >
+            Projects
+          </a>
+          <a
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#"
+          >
+            Blog
+          </a>
+        </nav>
+      </header>
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-black">
+                  Full Stack Developer Blog
+                </h1>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                  Exploring the world of web development, one stack at a time.
+                </p>
               </div>
-            </nav>
-          </div>
-          <div className="flex flex-col justify-center items-center mt-40 ">
-            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black">
-              Full Stack developer
-            </h1>
-            <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 max-w-[1000px]">
-              Exploring the world of web development, one stack at a time.
-            </p>
-            <div className="flex flex-row gap-4 mb-10">
-              <a
-                href="#"
-                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-              >
-                Ultimo post
-              </a>
-              <a
-                href="#"
-                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-              >
-                Sobre mi
-              </a>
+              <div className="space-x-4 ">
+                <Button>Latest Posts</Button>
+                <Button variant="outline" className="text-black">
+                  About Me
+                </Button>
+              </div>
             </div>
           </div>
         </section>
-      </header>
-
-      <main>
-        <section className="flex flex-col justify-center items-center mt-40 bg-gray-100 ">
-          <h1 className="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black mt-20">
-            Featured Posts
-          </h1>
-          <div className="flex flex-wrap justify-center items-center gap-5 mx-10 mt-20 mb-20 ">
-            {data.map((post, index) => (
-              <div
-                key={index}
-                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-[600px]  relative"
-              >
-                <a href="#">
-                  <img
-                    className="rounded-t-lg"
-                    src={
-                      post.attributes.imageCover.data.attributes.formats.small
-                        .url
-                    }
-                    alt=""
-                  />
-                </a>
-                <div className="p-5">
-                  <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
-                      {post.attributes.title}
-                    </h5>
-                  </a>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-64 overflow-hidden">
-                    {post.attributes.description}
-                  </p>
-                  <a
-                    href="#"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 absolute bottom-0 mb-5"
-                  >
-                    Read more
-                    <svg
-                      className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            ))}
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
+              Featured Posts
+            </h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {data &&
+                data.map((post, index) => (
+                  <Card key={index}>
+                    <CardHeader>
+                      <CardTitle>{post.attributes.title}</CardTitle>
+                      <ScrollArea className="h-20 w-full">
+                        <CardDescription>
+                          {post.attributes.description}
+                        </CardDescription>
+                      </ScrollArea>
+                    </CardHeader>
+                    <CardContent>
+                      {post.attributes.imageCover?.data?.attributes?.formats
+                        ?.small?.url && (
+                        <img
+                          src={
+                            post.attributes.imageCover.data.attributes.formats
+                              .small.url
+                          }
+                          alt={post.attributes.title || "Post image"}
+                          className="w-full h-auto object-cover rounded-md"
+                        />
+                      )}
+                    </CardContent>
+                    <CardFooter>
+                      <Button variant="link">Read More</Button>
+                    </CardFooter>
+                  </Card>
+                ))}
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
+              Stay Updated
+            </h2>
+            <div className="mx-auto max-w-sm space-y-4">
+              <Input placeholder="Enter your email" type="email" />
+              <Button className="w-full">Subscribe to Newsletter</Button>
+            </div>
           </div>
         </section>
       </main>
-
-      <footer className="bg-white  shadow  dark:bg-gray-800 w-full">
-        <div className="w-full  p-4 md:flex md:items-center md:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © 2023{" "}
-            <a href="https://flowbite.com/" className="hover:underline">
-              Flowbite™
-            </a>
-            . All Rights Reserved.
-          </span>
-          <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                Licensing
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Contact
-              </a>
-            </li>
-          </ul>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t text-black">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          © 2023 Alejandro Velez Gomez. All rights reserved.
+        </p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <a className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </a>
+          <a className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </a>
+        </nav>
+        <div className="flex gap-4">
+          <a href="#" className="text-gray-500 hover:text-gray-700">
+            <GithubIcon className="h-5 w-5" />
+            <span className="sr-only">GitHub</span>
+          </a>
+          <a href="#" className="text-gray-500 hover:text-gray-700">
+            <TwitterIcon className="h-5 w-5" />
+            <span className="sr-only">Twitter</span>
+          </a>
+          <a href="#" className="text-gray-500 hover:text-gray-700">
+            <LinkedinIcon className="h-5 w-5" />
+            <span className="sr-only">LinkedIn</span>
+          </a>
         </div>
       </footer>
     </div>
