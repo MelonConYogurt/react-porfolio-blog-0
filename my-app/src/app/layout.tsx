@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import {SiInstagram, SiGithub, SiYoutube} from "@icons-pack/react-simple-icons";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,11 +27,83 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
+      <header className="self-end px-4 lg:px-6 h-14 flex items-center">
+        <a className="flex items-center justify-center" href="#">
+          <span className="sr-only">Full Stack Dev Blog</span>
+        </a>
+        <nav className="ml-auto flex gap-4 sm:gap-6 text-black">
+          <a
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#"
+          >
+            Home
+          </a>
+          <Link legacyBehavior href="/About">
+            <a
+              className="text-sm font-medium hover:underline underline-offset-4"
+              href="#"
+            >
+              About
+            </a>
+          </Link>
+
+          <a
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#"
+          >
+            Projects
+          </a>
+          <a
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#"
+          >
+            Blog
+          </a>
+        </nav>
+      </header>
+
+      <div
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-      </body>
+      </div>
+
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t text-black">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          © 2023 Alejandro Velez Gomez. All rights reserved.
+        </p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <a className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </a>
+          <a className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </a>
+        </nav>
+        <div className="flex gap-4">
+          <a
+            href="https://github.com/MelonConYogurt"
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <SiGithub className="" size={24} />
+            <span className="sr-only">GitHub</span>
+          </a>
+          <a
+            href="https://www.instagram.com/mono_leandro_/"
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <SiInstagram className="" size={24} />
+            <span className="sr-only">GitHub</span>
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <SiYoutube className="" size={24} />
+            <span className="sr-only">GitHub</span>
+          </a>
+        </div>
+      </footer>
     </html>
   );
 }
