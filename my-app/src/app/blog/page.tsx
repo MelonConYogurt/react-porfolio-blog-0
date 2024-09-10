@@ -16,7 +16,6 @@ import GetPost from "@/utils/GetPosts";
 async function getData() {
   try {
     const data = await GetPost(1000);
-    console.log(data[0].attributes.slug);
     return data || [];
   } catch (error) {
     console.error(error);
@@ -81,6 +80,7 @@ async function Blog() {
                   <Link
                     legacyBehavior
                     href={`/blog/${element.attributes.slug}`}
+                    passHref
                   >
                     <Button variant="link">Read More</Button>
                   </Link>
