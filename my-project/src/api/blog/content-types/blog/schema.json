@@ -105,6 +105,16 @@
       "type": "richtext",
       "required": true,
       "minLength": 1
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

@@ -3,7 +3,7 @@ import {API_URL} from "../config";
 async function GetPost(quantity: number) {
   try {
     const response = await fetch(
-      `${API_URL}/api/blogs?total=${quantity}&populate=*`,
+      `${API_URL}/api/blogs?pagination[limit]=${quantity}&populate=*`,
       {
         method: "GET",
         headers: {
