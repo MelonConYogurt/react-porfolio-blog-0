@@ -26,40 +26,18 @@ interface Element {
   };
 }
 
-async function Getdt() {
+async function fetchData() {
   try {
-    const dt = await GetDt();
-    return dt || [];
+    const [ct, dt, tg] = await Promise.all([GetCt(), GetDt(), GetTg()]);
+    return {ct: ct || [], dt: dt || [], tg: tg || []};
   } catch (error) {
     console.error(error);
-    return [];
-  }
-}
-
-async function Getct() {
-  try {
-    const ct = await GetCt();
-    return ct || [];
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-async function Getg() {
-  try {
-    const tg = await GetTg();
-    return tg || [];
-  } catch (error) {
-    console.error(error);
-    return [];
+    return {ct: [], dt: [], tg: []};
   }
 }
 
 async function About() {
-  const ct = await Getct();
-  const dt = await Getdt();
-  const tg = await Getg();
+  const {ct, dt, tg} = await fetchData();
 
   return (
     <div className="flex flex-col justify-center items-center">

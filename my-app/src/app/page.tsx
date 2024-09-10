@@ -128,14 +128,18 @@ export default async function Component() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
             Tech Stack
           </h2>
-          <div className="flex flex-wrap gap-1 w-1/3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {tgs.map((element: Element, index: number) => (
-              <div
+              <Card
                 key={index}
-                className="h-auto w-auto rounded-md border border-black m-2 p-2"
+                className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1"
               >
-                <p>{element.attributes.name}</p>
-              </div>
+                <CardContent className="p-4 h-full flex items-center justify-center">
+                  <h3 className="text-center font-medium">
+                    {element.attributes.name}
+                  </h3>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </section>
