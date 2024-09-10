@@ -29,6 +29,7 @@ interface Element {
     title: string;
     description: string;
     name?: string;
+    slug?: string;
     imageCover?: {
       data?: {
         attributes?: {
@@ -102,7 +103,13 @@ export default async function Component() {
                       )}
                     </CardContent>
                     <CardFooter>
-                      <Button variant="link">Read More</Button>
+                      <Link
+                        legacyBehavior
+                        href={`/blog/${element.attributes.slug}`}
+                        passHref
+                      >
+                        <Button variant="link">Read More</Button>
+                      </Link>
                     </CardFooter>
                   </Card>
                 ))}
