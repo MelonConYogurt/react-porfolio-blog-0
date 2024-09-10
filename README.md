@@ -103,4 +103,6 @@ Si deseas contribuir a este proyecto, puedes hacer un fork y enviar un pull requ
 
 ![Screenshot 2024-09-10 003709](https://github.com/user-attachments/assets/dc1395ad-05fa-4e30-9da1-72389c662788)
 ![Screenshot 2024-09-10 003716](https://github.com/user-attachments/assets/82451501-38c2-47cb-8535-2284430d8446)
+![image](https://github.com/user-attachments/assets/b3166a1c-9450-4805-a882-d80a4ca8b24a)
+
 ![Screenshot 2024-09-10 003836](https://github.com/user-attachments/assets/dd6eb81b-3a1c-4a5e-9a48-9ae6c17db7a3)
