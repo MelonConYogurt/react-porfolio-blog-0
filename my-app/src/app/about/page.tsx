@@ -12,16 +12,22 @@ import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 
 function About() {
   return (
-    <div>
-      <header>
+    <div className="flex flex-col justify-center items-center">
+      <header className="flex flex-col justify-center items-center">
         <Avatar>
-          <AvatarImage src="https://avatars.githubusercontent.com/u/141779507?v=4" />
+          <AvatarImage
+            src="https://avatars.githubusercontent.com/u/141779507?v=4"
+            width={300}
+            height={300}
+          />
           <AvatarFallback>Avatar</AvatarFallback>
         </Avatar>
 
-        <div>
+        <div className="flex flex-row gap-1 text-black">
           <h1>Alejandro Vélez Gómez</h1>
-          <h3>Full Stack Developer | Open Source Enthusiast | Tech Blogger</h3>
+          <h3 className="sm: flex flex-wrap">
+            Full Stack Developer | Open Source Enthusiast | Tech Blogger
+          </h3>
         </div>
       </header>
       <main>

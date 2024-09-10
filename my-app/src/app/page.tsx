@@ -74,7 +74,7 @@ export default async function Component() {
               </div>
               <div className="space-x-4 ">
                 <Button>Latest Posts</Button>
-                <Link legacyBehavior href="/About">
+                <Link legacyBehavior href="/about">
                   <Button variant="outline" className="text-black">
                     About Me
                   </Button>
