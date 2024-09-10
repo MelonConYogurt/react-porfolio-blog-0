@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-
 import {Card, CardContent, CardTitle, CardHeader} from "@/components/ui/card";
 import GetCt from "@/utils/GetCt";
 import GetTg from "@/utils/GetTg";

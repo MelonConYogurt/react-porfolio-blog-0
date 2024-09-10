@@ -42,10 +42,7 @@ export default function RootLayout({
               </a>
             </Link>
             <Link legacyBehavior href="/about">
-              <a
-                className="text-sm font-medium hover:underline underline-offset-4"
-                href="#"
-              >
+              <a className="text-sm font-medium hover:underline underline-offset-4">
                 About
               </a>
             </Link>
@@ -56,12 +53,14 @@ export default function RootLayout({
             >
               Projects
             </a>
-            <a
-              className="text-sm font-medium hover:underline underline-offset-4"
-              href="#"
-            >
-              Blog
-            </a>
+            <Link legacyBehavior href="/blog">
+              <a
+                className="text-sm font-medium hover:underline underline-offset-4"
+                href="#"
+              >
+                Blog
+              </a>
+            </Link>
           </nav>
         </header>
 

@@ -17,21 +17,11 @@ import GetTg from "@/utils/GetTg";
 
 async function getData() {
   try {
-    const data = await GetPost();
-    return data || [];
+    const [data, tgs] = await Promise.all([GetPost(), GetTg()]);
+    return {data: data || [], tgs: tgs || []};
   } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-async function GetTgs() {
-  try {
-    const tgs = await GetTg();
-    return tgs || [];
-  } catch (error) {
-    console.error(error);
-    return [];
+    console.log(error);
+    return {data: [], tgs: []};
   }
 }
 
@@ -55,8 +45,7 @@ interface Element {
 }
 
 export default async function Component() {
-  const data = await getData();
-  const tgs = await GetTgs();
+  const {data, tgs} = await getData();
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">
@@ -118,9 +107,14 @@ export default async function Component() {
                     </CardFooter>
                   </Card>
                 ))}
-              <Button className="text-black bg-white w-fit" variant={"outline"}>
-                View All Post
-              </Button>
+              <Link legacyBehavior href="/blog">
+                <Button
+                  className="text-black bg-white w-fit"
+                  variant={"outline"}
+                >
+                  View All Post
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
