@@ -32,8 +32,12 @@ interface Element {
     imageCover?: {
       data?: {
         attributes?: {
+          url?: string;
           formats?: {
             small?: {
+              url: string;
+            };
+            large?: {
               url: string;
             };
           };
