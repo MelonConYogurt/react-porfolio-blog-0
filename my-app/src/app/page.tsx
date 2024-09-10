@@ -17,7 +17,7 @@ import GetTg from "@/utils/GetTg";
 
 async function getData() {
   try {
-    const [data, tgs] = await Promise.all([GetPost(), GetTg()]);
+    const [data, tgs] = await Promise.all([GetPost(3), GetTg()]);
     return {data: data || [], tgs: tgs || []};
   } catch (error) {
     console.log(error);

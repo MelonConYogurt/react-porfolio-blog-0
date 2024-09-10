@@ -14,7 +14,7 @@ import GetPost from "@/utils/GetPosts";
 
 async function getData() {
   try {
-    const data = await GetPost();
+    const data = await GetPost(1000);
     return data || [];
   } catch (error) {
     console.error(error);

@@ -1,13 +1,16 @@
 import {API_URL} from "../config";
 
-async function GetPost() {
+async function GetPost(quantity: number) {
   try {
-    const response = await fetch(`${API_URL}/api/blogs?populate=*`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${API_URL}/api/blogs?total=${quantity}&populate=*`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
