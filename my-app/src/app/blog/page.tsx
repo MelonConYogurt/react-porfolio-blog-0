@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {
   Card,
@@ -15,6 +16,7 @@ import GetPost from "@/utils/GetPosts";
 async function getData() {
   try {
     const data = await GetPost(1000);
+    console.log(data[0].attributes.slug);
     return data || [];
   } catch (error) {
     console.error(error);
@@ -27,6 +29,7 @@ interface Element {
     title: string;
     description: string;
     name?: string;
+    slug?: string;
     imageCover?: {
       data?: {
         attributes?: {
@@ -75,7 +78,12 @@ async function Blog() {
                   )}
                 </CardContent>
                 <CardFooter>
-                  <Button variant="link">Read More</Button>
+                  <Link
+                    legacyBehavior
+                    href={`/blog/${element.attributes.slug}`}
+                  >
+                    <Button variant="link">Read More</Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}
