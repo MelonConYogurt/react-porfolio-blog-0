@@ -72,11 +72,11 @@ export default async function Component() {
                   href={`/blog/${lt[0].attributes.slug}`}
                   passHref
                 >
-                  <Button variant="default">Latest Post</Button>
+                  <Button variant="default">Ultima publicacion</Button>
                 </Link>
                 <Link legacyBehavior href="/about">
                   <Button variant="outline" className="text-black">
-                    About Me
+                    Sobre mi
                   </Button>
                 </Link>
               </div>
@@ -86,7 +86,7 @@ export default async function Component() {
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
-              Featured Posts
+              Publicaciones recientes
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {data &&
@@ -125,11 +125,8 @@ export default async function Component() {
                   </Card>
                 ))}
               <Link legacyBehavior href="/blog">
-                <Button
-                  className="text-black bg-white w-fit"
-                  variant={"outline"}
-                >
-                  View All Post
+                <Button className="text-black  w-fit" variant={"link"}>
+                  Ver todas las publicaciones
                 </Button>
               </Link>
             </div>

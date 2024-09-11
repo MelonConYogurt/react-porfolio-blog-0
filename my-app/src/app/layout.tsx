@@ -43,7 +43,7 @@ export default function RootLayout({
             </Link>
             <Link legacyBehavior href="/about">
               <a className="text-sm font-medium hover:underline underline-offset-4">
-                About
+                Sobre mi
               </a>
             </Link>
 
@@ -58,7 +58,7 @@ export default function RootLayout({
                 className="text-sm font-medium hover:underline underline-offset-4"
                 href="#"
               >
-                Blog
+                Blogs
               </a>
             </Link>
           </nav>

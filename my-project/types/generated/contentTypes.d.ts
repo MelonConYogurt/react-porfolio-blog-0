@@ -973,6 +973,46 @@ export interface ApiEducationEducation extends Schema.CollectionType {
   };
 }
 
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'project';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        minLength: 5;
+        maxLength: 120;
+      }>;
+    content: Attribute.RichText & Attribute.Required;
+    imageCover: Attribute.Media<'images', true> & Attribute.Required;
+    introduction: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTechnologyTechnology extends Schema.CollectionType {
   collectionName: 'technologies';
   info: {
@@ -1029,6 +1069,7 @@ declare module '@strapi/types' {
       'api::blog.blog': ApiBlogBlog;
       'api::certification.certification': ApiCertificationCertification;
       'api::education.education': ApiEducationEducation;
+      'api::project.project': ApiProjectProject;
       'api::technology.technology': ApiTechnologyTechnology;
     }
   }

@@ -2,7 +2,7 @@
 import {Card, CardContent, CardTitle, CardHeader} from "@/components/ui/card";
 import GetCt from "@/utils/GetCt";
 import GetTg from "@/utils/GetTg";
-import GetDt from "@/utils/GetDt copy";
+import GetDt from "@/utils/GetDt";
 
 interface Element {
   attributes: {
@@ -116,7 +116,7 @@ async function About() {
           <h2 className="mt-20 mb-20 text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white">
             Educasion y certificasiones
           </h2>
-          <div className="flex flex-row  justify-center items-start gap-10 md:flex flex-wrap">
+          <div className="flex flex-col justify-center items-start gap-10 md:flex flex-wrap">
             <Card>
               <CardHeader>
                 <CardTitle>Educasion</CardTitle>
@@ -144,6 +144,61 @@ async function About() {
                     </li>
                   ))}
                 </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+        <section className="mt-20 mb-20">
+          <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
+            Intereses y pasatiempos
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle>Tecnología</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>
+                  Me apasiona estar al día con las últimas tendencias en
+                  desarrollo web y móvil. Disfruto experimentando con nuevas
+                  tecnologías y frameworks.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Deportes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>
+                  Practico gimnasio, calistenia y baloncesto regularmente. Creo
+                  firmemente en mantener un equilibrio entre la mente y el
+                  cuerpo.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Lectura</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>
+                  Me encanta leer libros sobre tecnología, desarrollo personal y
+                  ciencia ficción. Siempre estoy buscando expandir mis
+                  conocimientos.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Viajes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>
+                  Disfruto conocer nuevos lugares, culturas y personas. Viajar
+                  me inspira y me ayuda a tener una perspectiva más amplia del
+                  mundo.
+                </p>
               </CardContent>
             </Card>
           </div>
