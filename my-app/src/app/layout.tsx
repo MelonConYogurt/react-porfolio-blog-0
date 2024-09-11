@@ -78,6 +78,8 @@ export default function RootLayout({
             <a
               href="https://github.com/MelonConYogurt"
               className="text-gray-500 hover:text-gray-700"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <SiGithub className="" size={24} />
               <span className="sr-only">GitHub</span>
@@ -85,16 +87,20 @@ export default function RootLayout({
             <a
               href="https://www.instagram.com/mono_leandro_/"
               className="text-gray-500 hover:text-gray-700"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <SiInstagram className="" size={24} />
-              <span className="sr-only">GitHub</span>
+              <span className="sr-only">Instagram</span>
             </a>
             <a
               href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
               className="text-gray-500 hover:text-gray-700"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <SiYoutube className="" size={24} />
-              <span className="sr-only">GitHub</span>
+              <span className="sr-only">YouTube</span>
             </a>
           </div>
         </footer>

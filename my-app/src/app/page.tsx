@@ -13,14 +13,19 @@ import {Input} from "@/components/ui/input";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import GetPost from "@/utils/GetPosts";
 import GetTg from "@/utils/GetTg";
+import GetLastPost from "@/utils/GetLatsPost";
 
 async function getData() {
   try {
-    const [data, tgs] = await Promise.all([GetPost(3), GetTg()]);
-    return {data: data || [], tgs: tgs || []};
+    const [data, tgs, lt] = await Promise.all([
+      GetPost(3),
+      GetTg(),
+      GetLastPost(1),
+    ]);
+    return {data: data || [], tgs: tgs || [], lt: lt || []};
   } catch (error) {
     console.log(error);
-    return {data: [], tgs: []};
+    return {data: [], tgs: [], lt: []};
   }
 }
 
@@ -45,7 +50,7 @@ interface Element {
 }
 
 export default async function Component() {
-  const {data, tgs} = await getData();
+  const {data, tgs, lt} = await getData();
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">
@@ -62,7 +67,13 @@ export default async function Component() {
                 </p>
               </div>
               <div className="space-x-4 ">
-                <Button>Latest Posts</Button>
+                <Link
+                  legacyBehavior
+                  href={`/blog/${lt[0].attributes.slug}`}
+                  passHref
+                >
+                  <Button variant="default">Latest Post</Button>
+                </Link>
                 <Link legacyBehavior href="/about">
                   <Button variant="outline" className="text-black">
                     About Me

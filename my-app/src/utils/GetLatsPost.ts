@@ -1,6 +1,6 @@
 import {API_URL} from "../config";
 
-async function GetPost(quantity: number) {
+async function GetLastPost(quantity: number) {
   try {
     const response = await fetch(
       `${API_URL}/api/blogs?pagination[limit]=${quantity}&populate=*&sort=id:desc`,
@@ -24,4 +24,4 @@ async function GetPost(quantity: number) {
   }
 }
 
-export default GetPost;
+export default GetLastPost;
