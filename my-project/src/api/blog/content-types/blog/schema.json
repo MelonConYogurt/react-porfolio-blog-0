@@ -93,7 +93,7 @@
         }
       },
       "type": "richtext",
-      "required": true,
+      "required": false,
       "minLength": 1
     },
     "content": {
@@ -103,7 +103,7 @@
         }
       },
       "type": "richtext",
-      "required": true,
+      "required": false,
       "minLength": 1
     },
     "slug": {

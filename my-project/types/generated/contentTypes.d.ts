@@ -854,7 +854,6 @@ export interface ApiBlogBlog extends Schema.CollectionType {
         minLength: 1;
       }>;
     description: Attribute.RichText &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -864,7 +863,6 @@ export interface ApiBlogBlog extends Schema.CollectionType {
         minLength: 1;
       }>;
     content: Attribute.RichText &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

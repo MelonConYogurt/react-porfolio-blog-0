@@ -3,6 +3,9 @@ import {format} from "date-fns";
 import {es} from "date-fns/locale";
 import GetSinglePost from "@/utils/GetSinglePost";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/atom-one-dark.css";
 
 interface Element {
   attributes: {
@@ -124,7 +127,10 @@ export default async function Post({params}: PostProps) {
               {element.attributes.introduction && (
                 <div className="mb-8">
                   <h2 className="text-2xl font-semibold mb-4">Introducción</h2>
-                  <ReactMarkdown>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]}
+                  >
                     {element.attributes.introduction}
                   </ReactMarkdown>
                 </div>
@@ -132,7 +138,7 @@ export default async function Post({params}: PostProps) {
               {element.attributes.description && (
                 <div className="mb-8">
                   <h2 className="text-2xl font-semibold mb-4">Descripción</h2>
-                  <ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {element.attributes.description}
                   </ReactMarkdown>
                 </div>
@@ -140,7 +146,9 @@ export default async function Post({params}: PostProps) {
               {element.attributes.content && (
                 <div>
                   <h2 className="text-2xl font-semibold mb-4">Contenido</h2>
-                  <ReactMarkdown>{element.attributes.content}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {element.attributes.content}
+                  </ReactMarkdown>
                 </div>
               )}
             </section>
