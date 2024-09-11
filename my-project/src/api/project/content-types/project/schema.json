@@ -19,13 +19,9 @@
       "private": true,
       "maxLength": 120
     },
-    "content": {
-      "type": "richtext",
-      "required": true
-    },
     "imageCover": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "allowedTypes": [
         "images"
@@ -34,6 +30,9 @@
     "introduction": {
       "type": "text",
       "required": true
+    },
+    "link": {
+      "type": "text"
     }
   }
 }

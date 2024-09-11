@@ -992,9 +992,9 @@ export interface ApiProjectProject extends Schema.CollectionType {
         minLength: 5;
         maxLength: 120;
       }>;
-    content: Attribute.RichText & Attribute.Required;
-    imageCover: Attribute.Media<'images', true> & Attribute.Required;
+    imageCover: Attribute.Media<'images'> & Attribute.Required;
     introduction: Attribute.Text & Attribute.Required;
+    link: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

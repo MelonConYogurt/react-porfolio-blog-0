@@ -1,16 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
-import {Card, CardContent, CardTitle, CardHeader} from "@/components/ui/card";
 import GetCt from "@/utils/GetCt";
 import GetTg from "@/utils/GetTg";
 import GetDt from "@/utils/GetDt";
+import GetProjects from "@/utils/GetProjects";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {ScrollArea} from "@/components/ui/scroll-area";
 
 interface Element {
   attributes: {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
+    introduction?: string;
     name?: string;
     company?: string;
     state?: string;
+    link?: string;
     imageCover?: {
       data?: {
         attributes?: {
@@ -27,16 +40,21 @@ interface Element {
 
 async function fetchData() {
   try {
-    const [ct, dt, tg] = await Promise.all([GetCt(), GetDt(), GetTg()]);
-    return {ct: ct || [], dt: dt || [], tg: tg || []};
+    const [ct, dt, tg, data] = await Promise.all([
+      GetCt(),
+      GetDt(),
+      GetTg(),
+      GetProjects(),
+    ]);
+    return {ct: ct || [], dt: dt || [], tg: tg || [], data: data || []};
   } catch (error) {
     console.error(error);
-    return {ct: [], dt: [], tg: []};
+    return {ct: [], dt: [], tg: [], data: []};
   }
 }
 
 async function About() {
-  const {ct, dt, tg} = await fetchData();
+  const {ct, dt, tg, data} = await fetchData();
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -146,6 +164,41 @@ async function About() {
                 </ul>
               </CardContent>
             </Card>
+          </div>
+        </section>
+        <section>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {data &&
+              data.map((element: Element, index: number) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <CardTitle>{element.attributes.title}</CardTitle>
+                    <ScrollArea className="h-20 w-full">
+                      <CardDescription>
+                        {element.attributes.introduction}
+                      </CardDescription>
+                    </ScrollArea>
+                  </CardHeader>
+                  <CardContent>
+                    {element.attributes.imageCover?.data?.attributes?.formats
+                      ?.small?.url && (
+                      <img
+                        src={
+                          element.attributes.imageCover.data.attributes.formats
+                            .small.url
+                        }
+                        alt={element.attributes.title || "Post image"}
+                        className="w-full h-auto object-cover rounded-md"
+                      />
+                    )}
+                  </CardContent>
+                  <CardFooter>
+                    <Link legacyBehavior href="#" passHref>
+                      <Button variant="link">Read More</Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
           </div>
         </section>
         <section className="mt-20 mb-20">
