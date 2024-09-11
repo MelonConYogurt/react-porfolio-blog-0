@@ -47,12 +47,14 @@ export default function RootLayout({
               </a>
             </Link>
 
-            <a
-              className="text-sm font-medium hover:underline underline-offset-4"
-              href="#"
-            >
-              Projects
-            </a>
+            <Link legacyBehavior href="/projects">
+              <a
+                className="text-sm font-medium hover:underline underline-offset-4"
+                href="#"
+              >
+                Proyectos
+              </a>
+            </Link>
             <Link legacyBehavior href="/blog">
               <a
                 className="text-sm font-medium hover:underline underline-offset-4"
@@ -81,7 +83,7 @@ export default function RootLayout({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SiGithub className="" size={24} />
+              <SiGithub className="" size={24} color="black" />
               <span className="sr-only">GitHub</span>
             </a>
             <a
@@ -90,7 +92,7 @@ export default function RootLayout({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SiInstagram className="" size={24} />
+              <SiInstagram className="" size={24} color="purple" />
               <span className="sr-only">Instagram</span>
             </a>
             <a
@@ -99,7 +101,7 @@ export default function RootLayout({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SiYoutube className="" size={24} />
+              <SiYoutube className="" size={24} color="red" />
               <span className="sr-only">YouTube</span>
             </a>
           </div>

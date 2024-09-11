@@ -66,18 +66,20 @@ export default async function Component() {
                   Exploring the world of web development, one stack at a time.
                 </p>
               </div>
-              <div className="space-x-4 ">
+              <div className="space-x-4 flex flex-row gap-3">
                 <Link
                   legacyBehavior
                   href={`/blog/${lt[0].attributes.slug}`}
                   passHref
                 >
-                  <Button variant="default">Ultima publicacion</Button>
+                  <a className="flex flex-row gap-2 border p-3 rounded-lg text-white w-fit bg-black">
+                    Ultima publicacion
+                  </a>
                 </Link>
                 <Link legacyBehavior href="/about">
-                  <Button variant="outline" className="text-black">
+                  <a className="flex flex-row gap-2 border p-3 rounded-lg text-black w-fit bg-white">
                     Sobre mi
-                  </Button>
+                  </a>
                 </Link>
               </div>
             </div>
@@ -125,9 +127,9 @@ export default async function Component() {
                   </Card>
                 ))}
               <Link legacyBehavior href="/blog">
-                <Button className="text-black  w-fit" variant={"link"}>
+                <a className="flex flex-row gap-2 border p-3 rounded-lg text-black w-fit bg-white">
                   Ver todas las publicaciones
-                </Button>
+                </a>
               </Link>
             </div>
           </div>
