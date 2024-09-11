@@ -987,7 +987,6 @@ export interface ApiProjectProject extends Schema.CollectionType {
   attributes: {
     title: Attribute.String &
       Attribute.Required &
-      Attribute.Private &
       Attribute.SetMinMaxLength<{
         minLength: 5;
         maxLength: 120;

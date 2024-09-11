@@ -14,6 +14,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {ScrollArea} from "@/components/ui/scroll-area";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/atom-one-dark.css";
 
 interface Element {
   attributes: {
@@ -111,7 +115,7 @@ async function About() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col justify-center items-center  w-full p-5">
+        <section className="flex flex-col justify-center items-center  w-full p-5 bg-gray-100 dark:bg-gray-800">
           <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white mt-20 mb-20">
             Habilidades tecnicas
           </h2>
@@ -135,7 +139,7 @@ async function About() {
             Educasion y certificasiones
           </h2>
           <div className="flex flex-col justify-center items-start gap-10 md:flex flex-wrap">
-            <Card>
+            <Card className="w-[700px]">
               <CardHeader>
                 <CardTitle>Educasion</CardTitle>
               </CardHeader>
@@ -150,7 +154,7 @@ async function About() {
                 </ul>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="w-[700px]">
               <CardHeader>
                 <CardTitle>Certificasiones</CardTitle>
               </CardHeader>
@@ -166,8 +170,11 @@ async function About() {
             </Card>
           </div>
         </section>
-        <section>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center">
+          <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
+            Proyectos
+          </h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-10">
             {data &&
               data.map((element: Element, index: number) => (
                 <Card key={index}>
@@ -175,7 +182,12 @@ async function About() {
                     <CardTitle>{element.attributes.title}</CardTitle>
                     <ScrollArea className="h-20 w-full">
                       <CardDescription>
-                        {element.attributes.introduction}
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          rehypePlugins={[rehypeHighlight]}
+                        >
+                          {element.attributes.introduction}
+                        </ReactMarkdown>
                       </CardDescription>
                     </ScrollArea>
                   </CardHeader>
@@ -194,14 +206,14 @@ async function About() {
                   </CardContent>
                   <CardFooter>
                     <Link legacyBehavior href="#" passHref>
-                      <Button variant="link">Read More</Button>
+                      <Button variant="link">Ver completo</Button>
                     </Link>
                   </CardFooter>
                 </Card>
               ))}
           </div>
         </section>
-        <section className="mt-20 mb-20">
+        <section className="w-full py-12 mx-10 md:py-24 lg:py-32  flex flex-col items-center justify-center ">
           <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
             Intereses y pasatiempos
           </h2>

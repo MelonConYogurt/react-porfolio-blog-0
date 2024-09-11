@@ -16,7 +16,6 @@
       "type": "string",
       "required": true,
       "minLength": 5,
-      "private": true,
       "maxLength": 120
     },
     "imageCover": {
