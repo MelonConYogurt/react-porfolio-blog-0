@@ -11,8 +11,10 @@ import "highlight.js/styles/atom-one-dark.css";
 import {Heart} from "lucide-react";
 import {SiInstagram, SiGithub, SiYoutube} from "@icons-pack/react-simple-icons";
 import {useEffect, useState} from "react";
+import UpdateLikes from "@/utils/UpdateLikes";
 
 interface Element {
+  id: number;
   attributes: {
     title: string;
     description: string;
@@ -85,6 +87,7 @@ interface PostProps {
 async function getData(slug: string) {
   try {
     const data = await GetSinglePost(slug);
+    console.log(data);
     return data || [];
   } catch (error) {
     console.log("Ha ocurrido un error obtenmiendo los datos", error);
@@ -94,11 +97,14 @@ async function getData(slug: string) {
 
 export default function Post({params}: PostProps) {
   const [data, setData] = useState<Element[]>([]);
+  const [likesValue, setLikesValue] = useState<number>(0);
+  const [isLike, setIsLike] = useState<boolean>(false);
 
   useEffect(() => {
     async function fetchData() {
       const post = await getData(params.slug);
       setData(post);
+      setLikesValue(parseInt(post[0].attributes.likes));
     }
     fetchData();
   }, [params.slug]);
@@ -109,6 +115,15 @@ export default function Post({params}: PostProps) {
         <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent" />
       </div>
     );
+  }
+
+  function handleLike() {
+    setLikesValue((prev) => prev + 1);
+    setIsLike(true);
+    const update = async () => {
+      UpdateLikes(likesValue + 1, data[0].id);
+    };
+    update();
   }
 
   return (
@@ -184,12 +199,16 @@ export default function Post({params}: PostProps) {
               </p>
             </div>
             <div className="flex justify-center items-center mb-6">
-              <div className="bg-white px-4 py-2 rounded-full shadow-md flex items-center space-x-2">
+              <button
+                disabled={isLike}
+                onClick={handleLike}
+                className="bg-white px-4 py-2 rounded-full shadow-md flex items-center space-x-2"
+              >
                 <Heart color="red" size={24} />
                 <span className="text-lg font-semibold text-[#ff0000]">
-                  {element.attributes.likes}
+                  {likesValue}
                 </span>
-              </div>
+              </button>
             </div>
             <div className="flex justify-center space-x-6">
               <a
