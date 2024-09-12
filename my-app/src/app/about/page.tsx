@@ -115,7 +115,7 @@ async function About() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col justify-center items-center  w-full p-5 bg-gray-100 dark:bg-gray-800">
+        <section className="flex flex-col justify-center items-center  w-full p-5 ">
           <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white mt-20 mb-20">
             Habilidades tecnicas
           </h2>
@@ -170,11 +170,11 @@ async function About() {
             </Card>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center">
+        <section className="w-full py-12 md:py-24 lg:py-32  flex flex-col items-center justify-center">
           <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
             Proyectos
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-10">
+          <div className="flex flex-col w-1/3 gap-5">
             {data &&
               data.map((element: Element, index: number) => (
                 <Card key={index}>
@@ -217,7 +217,7 @@ async function About() {
           <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
             Intereses y pasatiempos
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex flex-col gap-5 w-1/2">
             <Card>
               <CardHeader>
                 <CardTitle>Tecnología</CardTitle>

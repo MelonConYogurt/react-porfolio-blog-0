@@ -90,7 +90,7 @@ async function Project() {
           </div>
         </div>
       </section>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center">
+      <section className="w-full py-12 md:py-24 lg:py-32  flex flex-col items-center justify-center">
         <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
           Proyectos
         </h2>

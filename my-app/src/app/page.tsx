@@ -12,23 +12,21 @@ import {
 import {Input} from "@/components/ui/input";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import GetPost from "@/utils/GetPosts";
-import GetTg from "@/utils/GetTg";
 import GetLastPost from "@/utils/GetLatsPost";
 import GetFeacturePost from "@/utils/GetFeaturePost";
 import {Heart} from "lucide-react";
 
 async function getData() {
   try {
-    const [data, tgs, lt, ft] = await Promise.all([
+    const [data, lt, ft] = await Promise.all([
       GetPost(3),
-      GetTg(),
       GetLastPost(1),
       GetFeacturePost(3),
     ]);
-    return {data: data || [], tgs: tgs || [], lt: lt || [], ft: ft || []};
+    return {data: data || [], lt: lt || [], ft: ft || []};
   } catch (error) {
     console.log(error);
-    return {data: [], tgs: [], lt: [], ft: []};
+    return {data: [], lt: [], ft: []};
   }
 }
 
@@ -54,7 +52,7 @@ interface Element {
 }
 
 export default async function Component() {
-  const {data, tgs, lt, ft} = await getData();
+  const {data, lt, ft} = await getData();
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">
@@ -197,25 +195,6 @@ export default async function Component() {
                 </a>
               </Link>
             </div>
-          </div>
-        </section>
-        <section className="w-full py-12 bg-white bg-opacity-70 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center text-black">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
-            Tech Stack
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {tgs.map((element: Element, index: number) => (
-              <Card
-                key={index}
-                className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1"
-              >
-                <CardContent className="p-4 h-full flex items-center justify-center">
-                  <h3 className="text-center font-medium">
-                    {element.attributes.name}
-                  </h3>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800">
