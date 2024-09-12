@@ -8,10 +8,22 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark.css";
-import {Heart} from "lucide-react";
+import {Heart, SquareArrowOutUpRight} from "lucide-react";
 import {SiInstagram, SiGithub, SiYoutube} from "@icons-pack/react-simple-icons";
 import {useEffect, useState} from "react";
 import UpdateLikes from "@/utils/UpdateLikes";
+import {Button} from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {ScrollArea} from "@/components/ui/scroll-area";
+import Link from "next/link";
+import GetPost from "@/utils/GetPostsClient";
 
 interface Element {
   id: number;
@@ -87,7 +99,16 @@ interface PostProps {
 async function getData(slug: string) {
   try {
     const data = await GetSinglePost(slug);
-    console.log(data);
+    return data || [];
+  } catch (error) {
+    console.log("Ha ocurrido un error obtenmiendo los datos", error);
+    return [];
+  }
+}
+
+async function getBlogs() {
+  try {
+    const data = await GetPost(3);
     return data || [];
   } catch (error) {
     console.log("Ha ocurrido un error obtenmiendo los datos", error);
@@ -97,12 +118,15 @@ async function getData(slug: string) {
 
 export default function Post({params}: PostProps) {
   const [data, setData] = useState<Element[]>([]);
+  const [blogs, setBlogs] = useState<Element[]>([]);
   const [likesValue, setLikesValue] = useState<number>(0);
   const [isLike, setIsLike] = useState<boolean>(false);
 
   useEffect(() => {
     async function fetchData() {
       const post = await getData(params.slug);
+      const bls = await getBlogs();
+      setBlogs(bls);
       setData(post);
       setLikesValue(parseInt(post[0].attributes.likes));
     }
@@ -126,13 +150,29 @@ export default function Post({params}: PostProps) {
     update();
   }
 
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: data[0].attributes.title,
+          text: data[0].attributes.description,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error("Error al compartir:", error);
+      }
+    } else {
+      // Fallback para navegadores que no soportan Web Share API
+      alert(
+        "Lo siento, tu navegador no soporta la función de compartir. Puedes copiar el enlace manualmente."
+      );
+    }
+  };
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 sta">
       {data.map((element: Element, index: number) => (
-        <article
-          key={index}
-          className="bg-white shadow-lg rounded-lg overflow-hidden"
-        >
+        <article key={index} className="bg-white shadow-lg rounded-lg mb-20">
           <header className="relative">
             <div className="aspect-video w-full">
               <img
@@ -141,7 +181,7 @@ export default function Post({params}: PostProps) {
                   "/placeholder.svg"
                 }
                 alt={element.attributes.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-lg"
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
@@ -191,54 +231,108 @@ export default function Post({params}: PostProps) {
               )}
             </section>
           </main>
-          <footer className="bg-gray-100 p-6 mt-8 rounded-lg shadow-inner">
-            <div className="text-center mb-4">
-              <p className="text-xl font-medium text-gray-700">
-                ¿Te ha gustado este artículo? ¡Deja un like y sígueme en mis
-                redes sociales!
-              </p>
-            </div>
-            <div className="flex justify-center items-center mb-6">
-              <button
-                disabled={isLike}
-                onClick={handleLike}
-                className="bg-white px-4 py-2 rounded-full shadow-md flex items-center space-x-2"
-              >
-                <Heart color="red" size={24} />
-                <span className="text-lg font-semibold text-[#ff0000]">
-                  {likesValue}
-                </span>
-              </button>
-            </div>
-            <div className="flex justify-center space-x-6">
-              <a
-                href="https://github.com/MelonConYogurt"
-                className="text-gray-700 hover:text-black transition-colors duration-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SiGithub size={32} />
-              </a>
-              <a
-                href="https://www.instagram.com/mono_leandro_/"
-                className="text-pink-600 hover:text-pink-700 transition-colors duration-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SiInstagram size={32} />
-              </a>
-              <a
-                href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
-                className="text-red-600 hover:text-red-700 transition-colors duration-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SiYoutube size={32} />
-              </a>
-            </div>
-          </footer>
         </article>
       ))}
+      <section className="w-full py-12  md:py-24 lg:py-32 bg-white dark:bg-gray-800 flex flex-col items-center justify-center">
+        <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
+            Continua leyendo, visita nuestras publicaciones mas recientes
+          </h2>
+          <div className="flex flex-col gap-5">
+            {blogs &&
+              blogs.map((element: Element, index: number) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <CardTitle>{element.attributes.title}</CardTitle>
+                    <ScrollArea className="h-20 w-full">
+                      <CardDescription>
+                        {element.attributes.description}
+                      </CardDescription>
+                    </ScrollArea>
+                  </CardHeader>
+                  <CardContent>
+                    {element.attributes.imageCover?.data?.attributes?.formats
+                      ?.large?.url && (
+                      <img
+                        src={
+                          element.attributes.imageCover.data.attributes.formats
+                            .large.url
+                        }
+                        alt={element.attributes.title || "Post image"}
+                        className="w-full h-auto object-cover rounded-md"
+                      />
+                    )}
+                  </CardContent>
+                  <CardFooter className="flex flex-row  justify-between mx-auto">
+                    <Link
+                      legacyBehavior
+                      href={`/blog/${element.attributes.slug}`}
+                      passHref
+                    >
+                      <Button variant="link">Read More</Button>
+                    </Link>
+
+                    <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
+                      <Heart />
+                      <p className="font-medium">{element.attributes.likes}</p>
+                    </div>
+                  </CardFooter>
+                </Card>
+              ))}
+            <Link legacyBehavior href="/blog">
+              <a className="flex flex-row gap-2 border my-5 p-3 rounded-lg justify-center items-center text-black w-full bg-white">
+                Ver todas las publicaciones
+              </a>
+            </Link>
+          </div>
+        </div>
+      </section>
+      <div className="bg-gray-100 rounded-lg shadow-inner lg:fixed top-20 left-3 ">
+        <div className="flex flex-col justify-center items-center gap-3 m-3">
+          <Button
+            variant={"ghost"}
+            disabled={isLike}
+            onClick={handleLike}
+            className="bg-white py-2 rounded-full shadow-md flex items-center"
+          >
+            <Heart color="red" size={24} className="mr-1" />
+            <span className="text-lg font-semibold text-[#ff0000]">
+              {likesValue}
+            </span>
+          </Button>
+          <Button
+            variant={"ghost"}
+            className="bg-white  py-2 rounded-full shadow-md flex items-center "
+            onClick={handleShare}
+          >
+            <SquareArrowOutUpRight color="black" />
+          </Button>
+          <a
+            href="https://github.com/MelonConYogurt"
+            className="text-gray-700 hover:text-black transition-colors duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiGithub size={32} />
+          </a>
+          <a
+            href="https://www.instagram.com/mono_leandro_/"
+            className="text-pink-600 hover:text-pink-700 transition-colors duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiInstagram size={32} />
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
+            className="text-red-600 hover:text-red-700 transition-colors duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SiYoutube size={32} />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
