@@ -1,27 +1,25 @@
-import {API_URL, API_TOKEN} from "../config";
-
 async function GetSinglePost(slug: string) {
   try {
     const response = await fetch(
-      `${API_URL}/api/blogs?filters[slug][$eq]=${slug}&populate=*`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/blogs?filters[slug][$eq]=${slug}&populate=*`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${API_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
         },
       }
     );
 
     if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
+      throw new Error(`Ha ocurrido un error: ${response.status}`);
     } else {
       const {data, meta} = await response.json();
-      console.log(meta);
+      console.log("Meta datos obtenidos: ", meta);
       return data;
     }
   } catch (error) {
-    console.log("Error", error);
+    console.log("Ha ocurrido un Error", error);
   }
 }
 

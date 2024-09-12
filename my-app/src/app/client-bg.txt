@@ -87,7 +87,7 @@ async function getData(slug: string) {
     const data = await GetSinglePost(slug);
     return data || [];
   } catch (error) {
-    console.log("Ha ocurrido un error obtenmiendo los datos", error);
+    console.log(error);
     return [];
   }
 }
