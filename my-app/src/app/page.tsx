@@ -55,7 +55,7 @@ export default async function Component() {
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">
       <main className="flex flex-col w-full ">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">
+        <section className="w-full py-12 bg-white bg-opacity-70 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
@@ -85,7 +85,7 @@ export default async function Component() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 flex flex-col items-center justify-center">
+        <section className="w-full py-12  md:py-24 lg:py-32 bg-white dark:bg-gray-800 flex flex-col items-center justify-center">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
               Publicaciones recientes
@@ -134,7 +134,7 @@ export default async function Component() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center text-black">
+        <section className="w-full py-12 bg-white bg-opacity-70 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center text-black">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
             Tech Stack
           </h2>
