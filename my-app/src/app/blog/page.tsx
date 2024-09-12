@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import GetPost from "@/utils/GetPosts";
+import {Heart} from "lucide-react";
 
 async function getData() {
   try {
@@ -29,6 +30,7 @@ interface Element {
     description: string;
     name?: string;
     slug?: string;
+    likes?: number;
     imageCover?: {
       data?: {
         attributes?: {
@@ -80,7 +82,7 @@ async function Blog() {
                     />
                   )}
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex flex-row  justify-between mx-auto">
                   <Link
                     legacyBehavior
                     href={`/blog/${element.attributes.slug}`}
@@ -88,6 +90,10 @@ async function Blog() {
                   >
                     <Button variant="link">Read More</Button>
                   </Link>
+                  <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
+                    <Heart />
+                    <p className="font-medium">{element.attributes.likes}</p>
+                  </div>
                 </CardFooter>
               </Card>
             ))}

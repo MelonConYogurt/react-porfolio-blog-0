@@ -6,6 +6,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark.css";
+import {Heart} from "lucide-react";
+import {SiInstagram, SiGithub, SiYoutube} from "@icons-pack/react-simple-icons";
 
 interface Element {
   attributes: {
@@ -20,6 +22,7 @@ interface Element {
     locale?: string;
     name?: string;
     slug?: string;
+    likes?: number;
     imageCover?: {
       data?: {
         attributes?: {
@@ -153,6 +156,48 @@ export default async function Post({params}: PostProps) {
               )}
             </section>
           </main>
+          <footer className="bg-gray-100 p-6 mt-8 rounded-lg shadow-inner">
+            <div className="text-center mb-4">
+              <p className="text-xl font-medium text-gray-700">
+                ¿Te ha gustado este artículo? ¡Deja un like y sígueme en mis
+                redes sociales!
+              </p>
+            </div>
+            <div className="flex justify-center items-center mb-6">
+              <div className="bg-white px-4 py-2 rounded-full shadow-md flex items-center space-x-2">
+                <Heart className="text-red-500" size={24} />
+                <span className="text-lg font-semibold">
+                  {element.attributes.likes}
+                </span>
+              </div>
+            </div>
+            <div className="flex justify-center space-x-6">
+              <a
+                href="https://github.com/MelonConYogurt"
+                className="text-gray-700 hover:text-black transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SiGithub size={32} />
+              </a>
+              <a
+                href="https://www.instagram.com/mono_leandro_/"
+                className="text-pink-600 hover:text-pink-700 transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SiInstagram size={32} />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
+                className="text-red-600 hover:text-red-700 transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SiYoutube size={32} />
+              </a>
+            </div>
+          </footer>
         </article>
       ))}
     </div>

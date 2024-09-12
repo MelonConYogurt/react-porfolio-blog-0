@@ -1,4 +1,4 @@
-import {API_URL} from "../config";
+import {API_URL, API_TOKEN} from "../config";
 
 async function GetDt() {
   try {
@@ -6,6 +6,7 @@ async function GetDt() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${API_TOKEN}`,
       },
     });
 

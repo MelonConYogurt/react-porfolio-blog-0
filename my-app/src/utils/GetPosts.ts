@@ -1,4 +1,4 @@
-import {API_URL} from "../config";
+import {API_URL, API_TOKEN} from "../config";
 
 async function GetPost(quantity: number) {
   try {
@@ -8,6 +8,7 @@ async function GetPost(quantity: number) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${API_TOKEN}`,
         },
       }
     );

@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="animated-background h-screen bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500">
+      <body>
         <header className="px-4 h-auto bg-white lg:px-6  flex items-center">
           <nav className="w-full flex flex-col sm:flex-row justify-between items-center text-black gap-4 py-2">
             <div className="flex flex-row gap-2 justify-center items-center">

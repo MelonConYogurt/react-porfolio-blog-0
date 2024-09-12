@@ -115,6 +115,15 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "likes": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "biginteger",
+      "default": "0"
     }
   }
 }

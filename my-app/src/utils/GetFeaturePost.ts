@@ -1,9 +1,9 @@
 import {API_URL, API_TOKEN} from "../config";
 
-async function GetSinglePost(slug: string) {
+async function GetFeacturePost(quantity: number) {
   try {
     const response = await fetch(
-      `${API_URL}/api/blogs?filters[slug][$eq]=${slug}&populate=*`,
+      `${API_URL}/api/blogs?pagination[limit]=${quantity}&populate=*&sort[0]=likes:desc`,
       {
         method: "GET",
         headers: {
@@ -25,4 +25,4 @@ async function GetSinglePost(slug: string) {
   }
 }
 
-export default GetSinglePost;
+export default GetFeacturePost;

@@ -14,18 +14,21 @@ import {ScrollArea} from "@/components/ui/scroll-area";
 import GetPost from "@/utils/GetPosts";
 import GetTg from "@/utils/GetTg";
 import GetLastPost from "@/utils/GetLatsPost";
+import GetFeacturePost from "@/utils/GetFeaturePost";
+import {Heart} from "lucide-react";
 
 async function getData() {
   try {
-    const [data, tgs, lt] = await Promise.all([
+    const [data, tgs, lt, ft] = await Promise.all([
       GetPost(3),
       GetTg(),
       GetLastPost(1),
+      GetFeacturePost(3),
     ]);
-    return {data: data || [], tgs: tgs || [], lt: lt || []};
+    return {data: data || [], tgs: tgs || [], lt: lt || [], ft: ft || []};
   } catch (error) {
     console.log(error);
-    return {data: [], tgs: [], lt: []};
+    return {data: [], tgs: [], lt: [], ft: []};
   }
 }
 
@@ -35,6 +38,7 @@ interface Element {
     description: string;
     name?: string;
     slug?: string;
+    likes?: number;
     imageCover?: {
       data?: {
         attributes?: {
@@ -50,7 +54,7 @@ interface Element {
 }
 
 export default async function Component() {
-  const {data, tgs, lt} = await getData();
+  const {data, tgs, lt, ft} = await getData();
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">
@@ -115,7 +119,7 @@ export default async function Component() {
                         />
                       )}
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="flex flex-row  justify-between mx-auto">
                       <Link
                         legacyBehavior
                         href={`/blog/${element.attributes.slug}`}
@@ -123,6 +127,67 @@ export default async function Component() {
                       >
                         <Button variant="link">Read More</Button>
                       </Link>
+                      <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
+                        <Heart />
+                        <p className="font-medium">
+                          {element.attributes.likes}
+                        </p>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                ))}
+              <Link legacyBehavior href="/blog">
+                <a className="flex flex-row gap-2 border p-3 rounded-lg text-black w-fit bg-white">
+                  Ver todas las publicaciones
+                </a>
+              </Link>
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12  md:py-24 lg:py-32 bg-white dark:bg-gray-800 flex flex-col items-center justify-center">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
+              Publicaciones populares
+            </h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {ft &&
+                ft.map((element: Element, index: number) => (
+                  <Card key={index}>
+                    <CardHeader>
+                      <CardTitle>{element.attributes.title}</CardTitle>
+                      <ScrollArea className="h-20 w-full">
+                        <CardDescription>
+                          {element.attributes.description}
+                        </CardDescription>
+                      </ScrollArea>
+                    </CardHeader>
+                    <CardContent>
+                      {element.attributes.imageCover?.data?.attributes?.formats
+                        ?.small?.url && (
+                        <img
+                          src={
+                            element.attributes.imageCover.data.attributes
+                              .formats.small.url
+                          }
+                          alt={element.attributes.title || "Post image"}
+                          className="w-full h-auto object-cover rounded-md"
+                        />
+                      )}
+                    </CardContent>
+                    <CardFooter className="flex flex-row  justify-between mx-auto">
+                      <Link
+                        legacyBehavior
+                        href={`/blog/${element.attributes.slug}`}
+                        passHref
+                      >
+                        <Button variant="link">Read More</Button>
+                      </Link>
+                      <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
+                        <Heart />
+                        <p className="font-medium">
+                          {element.attributes.likes}
+                        </p>
+                      </div>
                     </CardFooter>
                   </Card>
                 ))}
