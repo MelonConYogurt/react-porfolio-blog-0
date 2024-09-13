@@ -234,6 +234,52 @@ export default function Post({params}: PostProps) {
                   </div>
                 )}
               </section>
+              <div className="w-full  p-3 rounded-lg  custom:w-fit  custom:p-3 custom:rounded-lg ">
+                <div className="flex flex-row justify-center items-center gap-2 custom:flex-col custom:fixed custom:top-20 custom:left-2 custom:justify-center custom:items-center custom:gap-2 custom:bg-slate-50 custom:p-3 custom:rounded-lg ">
+                  <Button
+                    variant={"ghost"}
+                    disabled={isLike}
+                    onClick={handleLike}
+                    className="bg-white py-2 rounded-full shadow-md flex items-center"
+                  >
+                    <Heart color="red" size={24} className="mr-1" />
+                    <span className="text-lg font-semibold text-[#ff0000]">
+                      {likesValue}
+                    </span>
+                  </Button>
+                  <Button
+                    variant={"ghost"}
+                    className="bg-white  py-2 rounded-full shadow-md flex items-center "
+                    onClick={handleShare}
+                  >
+                    <SquareArrowOutUpRight color="black" />
+                  </Button>
+                  <a
+                    href="https://github.com/MelonConYogurt"
+                    className="text-gray-700 hover:text-black transition-colors duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <SiGithub size={32} />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/mono_leandro_/"
+                    className="text-pink-600 hover:text-pink-700 transition-colors duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <SiInstagram size={32} />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
+                    className="text-red-600 hover:text-red-700 transition-colors duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <SiYoutube size={32} />
+                  </a>
+                </div>
+              </div>
             </main>
           </article>
         ))}
@@ -293,52 +339,6 @@ export default function Post({params}: PostProps) {
             </div>
           </div>
         </section>
-        <div className="bg-gray-100 rounded-lg shadow-inner lg:fixed top-20 left-3 ">
-          <div className="flex flex-col justify-center items-center gap-3 m-3">
-            <Button
-              variant={"ghost"}
-              disabled={isLike}
-              onClick={handleLike}
-              className="bg-white py-2 rounded-full shadow-md flex items-center"
-            >
-              <Heart color="red" size={24} className="mr-1" />
-              <span className="text-lg font-semibold text-[#ff0000]">
-                {likesValue}
-              </span>
-            </Button>
-            <Button
-              variant={"ghost"}
-              className="bg-white  py-2 rounded-full shadow-md flex items-center "
-              onClick={handleShare}
-            >
-              <SquareArrowOutUpRight color="black" />
-            </Button>
-            <a
-              href="https://github.com/MelonConYogurt"
-              className="text-gray-700 hover:text-black transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SiGithub size={32} />
-            </a>
-            <a
-              href="https://www.instagram.com/mono_leandro_/"
-              className="text-pink-600 hover:text-pink-700 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SiInstagram size={32} />
-            </a>
-            <a
-              href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
-              className="text-red-600 hover:text-red-700 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SiYoutube size={32} />
-            </a>
-          </div>
-        </div>
       </div>
     </Transition>
   );
