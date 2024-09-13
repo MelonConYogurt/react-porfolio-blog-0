@@ -41,103 +41,106 @@ interface Element {
   };
 }
 
-async function fetchData() {
+async function fetchProjects() {
   try {
-    const [data] = await Promise.all([GetProjects()]);
-    return {data: data || []};
+    const projects = await GetProjects();
+    return projects || [];
   } catch (error) {
-    console.error(error);
-    return {data: []};
+    console.error("Error fetching projects:", error);
+    return [];
   }
 }
 
-async function Project() {
-  const {data} = await fetchData();
+export default async function Project() {
+  const data = await fetchProjects();
+
   return (
     <Transition>
-      <div className="flex flex-col min-h-screen justify-center items-center">
+      <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-white">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-black">
-                  Mis proyectos estan documentados
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-black mb-2">
+                  Mis proyectos están documentados
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Visita mi pagina de Github o Youtube, para mas informacion
+                  Visita mi página de Github o Youtube para más información
                 </p>
               </div>
-              <div className="space-x-4 flex flex-row gap-3 text-black">
-                <a className="flex flex-row gap-2 border p-3 rounded-lg">
-                  <SiGithub className="" size={24} />
-                  <Link
-                    href="https://github.com/MelonConYogurt"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Github
-                  </Link>
-                </a>
-                <a className="flex flex-row gap-2 border p-3 rounded-lg">
-                  <SiYoutube className="" size={24} color="red" />
-                  <Link
-                    href="https://www.youtube.com/@AlejandroVg-io3zb"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Youtube
-                  </Link>
-                </a>
+              <div className="space-x-4 flex flex-row gap-3">
+                <Link
+                  href="https://github.com/MelonConYogurt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-row gap-2 border p-3 rounded-lg text-white w-fit bg-black justify-center items-center"
+                >
+                  <SiGithub className="mr-2" />
+                  Github
+                </Link>
+                <Link
+                  href="https://www.youtube.com/@AlejandroVg-io3zb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-row gap-2 border p-3 rounded-lg text-white w-fit bg-black justify-center items-center"
+                >
+                  <SiYoutube className="mr-2" color="red" />
+                  Youtube
+                </Link>
               </div>
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32  flex flex-col items-center justify-center">
-          <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
+        <section className="bg-white bg-opacity-70  py-12   md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
             Proyectos
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-10">
-            {data &&
-              data.map((element: Element, index: number) => (
-                <Card key={index}>
-                  <CardHeader>
-                    <CardTitle>{element.attributes.title}</CardTitle>
-                    <ScrollArea className="h-20 w-full">
-                      <CardDescription>
-                        <ReactMarkdown
-                          remarkPlugins={[remarkGfm]}
-                          rehypePlugins={[rehypeHighlight]}
-                        >
-                          {element.attributes.introduction}
-                        </ReactMarkdown>
-                      </CardDescription>
-                    </ScrollArea>
-                  </CardHeader>
-                  <CardContent>
-                    {element.attributes.imageCover?.data?.attributes?.formats
-                      ?.small?.url && (
-                      <img
-                        src={
-                          element.attributes.imageCover.data.attributes.formats
-                            .small.url
-                        }
-                        alt={element.attributes.title || "Post image"}
-                        className="w-full h-auto object-cover rounded-md"
-                      />
-                    )}
-                  </CardContent>
-                  <CardFooter>
-                    <Link legacyBehavior href="#" passHref>
-                      <Button variant="link">Ver completo</Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
+          <div className="w-4/5  grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-10">
+            {data.map((element: Element, index: number) => (
+              <Card
+                key={index}
+                className="overflow-hidden transition-all duration-200 hover:shadow-lg"
+              >
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold">
+                    {element.attributes.title}
+                  </CardTitle>
+                  <ScrollArea className="h-20 w-full">
+                    <CardDescription>
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[rehypeHighlight]}
+                      >
+                        {element.attributes.introduction}
+                      </ReactMarkdown>
+                    </CardDescription>
+                  </ScrollArea>
+                </CardHeader>
+                <CardContent>
+                  {element.attributes.imageCover?.data?.attributes?.formats
+                    ?.small?.url && (
+                    <img
+                      src={
+                        element.attributes.imageCover.data.attributes.formats
+                          .small.url
+                      }
+                      alt={element.attributes.title || "Post image"}
+                      width={300}
+                      height={200}
+                      className="w-full h-1/2 object-cover rounded-md transition-transform duration-200 hover:scale-105"
+                    />
+                  )}
+                </CardContent>
+                <CardFooter>
+                  <Button variant="outline" className="w-full">
+                    Ver completo
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
         </section>
       </div>
     </Transition>
   );
 }
-
-export default Project;

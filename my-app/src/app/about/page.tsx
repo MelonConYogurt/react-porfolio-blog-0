@@ -64,7 +64,7 @@ async function About() {
   return (
     <Transition>
       <div className="flex flex-col justify-center items-center">
-        <header className="flex flex-col justify-center items-center w-full p-5">
+        <header className="bg-gradient-to-b from-gray-50 to-white flex flex-col justify-center items-center w-full p-5">
           <div className="flex flex-col gap-10 justify-center items-center text-black">
             <div>
               <img
