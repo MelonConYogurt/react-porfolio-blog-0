@@ -24,7 +24,6 @@ import {
 import {ScrollArea} from "@/components/ui/scroll-area";
 import Link from "next/link";
 import GetPost from "@/utils/GetPostsClient";
-import Transition from "@/components/Transition";
 
 interface Element {
   id: number;
@@ -171,175 +170,175 @@ export default function Post({params}: PostProps) {
   };
 
   return (
-    <Transition>
-      <div className="max-w-4xl mx-auto px-4 py-8 sta">
-        {data.map((element: Element, index: number) => (
-          <article key={index} className="bg-white shadow-lg rounded-lg mb-20">
-            <header className="relative">
-              <div className="aspect-video w-full">
-                <img
-                  src={
-                    element.attributes.imageHeader?.data?.attributes?.url ||
-                    "/placeholder.svg"
-                  }
-                  alt={element.attributes.title}
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
-                <h1 className="text-white text-4xl font-bold mb-2">
-                  {element.attributes.title}
-                </h1>
-                {element.attributes.publishedAt && (
-                  <p className="text-gray-300 text-sm">
-                    Publicado el{" "}
-                    {format(
-                      new Date(element.attributes.publishedAt),
-                      "d 'de' MMMM 'de' yyyy",
-                      {locale: es}
-                    )}
-                  </p>
-                )}
-              </div>
-            </header>
-            <main className="p-6">
-              <section className="prose prose-lg max-w-none">
-                {element.attributes.introduction && (
-                  <div className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-4">
-                      Introducción
-                    </h2>
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      rehypePlugins={[rehypeHighlight]}
-                    >
-                      {element.attributes.introduction}
-                    </ReactMarkdown>
-                  </div>
-                )}
-                {element.attributes.description && (
-                  <div className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-4">Descripción</h2>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {element.attributes.description}
-                    </ReactMarkdown>
-                  </div>
-                )}
-                {element.attributes.content && (
-                  <div>
-                    <h2 className="text-2xl font-semibold mb-4">Contenido</h2>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {element.attributes.content}
-                    </ReactMarkdown>
-                  </div>
-                )}
-              </section>
-              <div className="w-full  p-3 rounded-lg  custom:w-fit  custom:p-3 custom:rounded-lg ">
-                <div className="flex flex-row justify-center items-center gap-2 custom:flex-col custom:fixed custom:top-20 custom:left-2 custom:justify-center custom:items-center custom:gap-2 custom:bg-slate-50 custom:p-3 custom:rounded-lg ">
-                  <Button
-                    variant={"ghost"}
-                    disabled={isLike}
-                    onClick={handleLike}
-                    className="bg-white py-2 rounded-full shadow-md flex items-center"
-                  >
-                    <Heart color="red" size={24} className="mr-1" />
-                    <span className="text-lg font-semibold text-[#ff0000]">
-                      {likesValue}
-                    </span>
-                  </Button>
-                  <Button
-                    variant={"ghost"}
-                    className="bg-white  py-2 rounded-full shadow-md flex items-center "
-                    onClick={handleShare}
-                  >
-                    <SquareArrowOutUpRight color="black" />
-                  </Button>
-                  <a
-                    href="https://github.com/MelonConYogurt"
-                    className="text-gray-700 hover:text-black transition-colors duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <SiGithub size={32} />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/mono_leandro_/"
-                    className="text-pink-600 hover:text-pink-700 transition-colors duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <SiInstagram size={32} />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
-                    className="text-red-600 hover:text-red-700 transition-colors duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <SiYoutube size={32} />
-                  </a>
-                </div>
-              </div>
-            </main>
-          </article>
-        ))}
-        <section className="w-full py-12  md:py-24 lg:py-32 bg-white dark:bg-gray-800 flex flex-col items-center justify-center">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
-              Continua leyendo, visita nuestras publicaciones mas recientes
-            </h2>
-            <div className="flex flex-col gap-5">
-              {blogs &&
-                blogs.map((element: Element, index: number) => (
-                  <Card key={index}>
-                    <CardHeader>
-                      <CardTitle>{element.attributes.title}</CardTitle>
-                      <ScrollArea className="h-20 w-full">
-                        <CardDescription>
-                          {element.attributes.description}
-                        </CardDescription>
-                      </ScrollArea>
-                    </CardHeader>
-                    <CardContent>
-                      {element.attributes.imageCover?.data?.attributes?.formats
-                        ?.large?.url && (
-                        <img
-                          src={
-                            element.attributes.imageCover.data.attributes
-                              .formats.large.url
-                          }
-                          alt={element.attributes.title || "Post image"}
-                          className="w-full h-auto object-cover rounded-md"
-                        />
-                      )}
-                    </CardContent>
-                    <CardFooter className="flex flex-row  justify-between mx-auto">
-                      <Link
-                        legacyBehavior
-                        href={`/blog/${element.attributes.slug}`}
-                        passHref
-                      >
-                        <Button variant="link">Read More</Button>
-                      </Link>
-
-                      <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
-                        <Heart />
-                        <p className="font-medium">
-                          {element.attributes.likes}
-                        </p>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                ))}
-              <Link legacyBehavior href="/blog">
-                <a className="flex flex-row gap-2 border my-5 p-3 rounded-lg justify-center items-center text-black w-full bg-white">
-                  Ver todas las publicaciones
-                </a>
-              </Link>
+    <div className="max-w-4xl mx-auto px-4 py-8 sta">
+      {data.map((element: Element, index: number) => (
+        <article key={index} className="bg-white shadow-lg rounded-lg mb-20">
+          <header className="relative">
+            <div className="aspect-video w-full">
+              <img
+                src={
+                  element.attributes.imageHeader?.data?.attributes?.url ||
+                  "/placeholder.svg"
+                }
+                alt={element.attributes.title}
+                className="w-full h-full object-cover rounded-lg"
+              />
             </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+              <h1 className="text-white text-4xl font-bold mb-2">
+                {element.attributes.title}
+              </h1>
+              {element.attributes.publishedAt && (
+                <p className="text-gray-300 text-sm">
+                  Publicado el{" "}
+                  {format(
+                    new Date(element.attributes.publishedAt),
+                    "d 'de' MMMM 'de' yyyy",
+                    {locale: es}
+                  )}
+                </p>
+              )}
+            </div>
+          </header>
+          <main className="p-6">
+            <section className="prose prose-lg max-w-none">
+              {element.attributes.introduction && (
+                <div className="mb-8">
+                  <h2 className="text-2xl font-semibold mb-4">Introducción</h2>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]}
+                  >
+                    {element.attributes.introduction}
+                  </ReactMarkdown>
+                </div>
+              )}
+              {element.attributes.description && (
+                <div className="mb-8">
+                  <h2 className="text-2xl font-semibold mb-4">Descripción</h2>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]}
+                  >
+                    {element.attributes.description}
+                  </ReactMarkdown>
+                </div>
+              )}
+              {element.attributes.content && (
+                <div>
+                  <h2 className="text-2xl font-semibold mb-4">Contenido</h2>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]}
+                  >
+                    {element.attributes.content}
+                  </ReactMarkdown>
+                </div>
+              )}
+            </section>
+            <div className="w-full  p-3 rounded-lg  custom:w-fit  custom:p-3 custom:rounded-lg ">
+              <div className="flex flex-row justify-center items-center gap-2 custom:flex-col custom:fixed custom:top-20 custom:left-2 custom:justify-center custom:items-center custom:gap-2 custom:bg-slate-50 custom:p-3 custom:rounded-lg ">
+                <Button
+                  variant={"ghost"}
+                  disabled={isLike}
+                  onClick={handleLike}
+                  className="bg-white py-2 rounded-full shadow-md flex items-center"
+                >
+                  <Heart color="red" size={24} className="mr-1" />
+                  <span className="text-lg font-semibold text-[#ff0000]">
+                    {likesValue}
+                  </span>
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  className="bg-white  py-2 rounded-full shadow-md flex items-center "
+                  onClick={handleShare}
+                >
+                  <SquareArrowOutUpRight color="black" />
+                </Button>
+                <a
+                  href="https://github.com/MelonConYogurt"
+                  className="text-gray-700 hover:text-black transition-colors duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiGithub size={32} />
+                </a>
+                <a
+                  href="https://www.instagram.com/mono_leandro_/"
+                  className="text-pink-600 hover:text-pink-700 transition-colors duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiInstagram size={32} />
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCZw0RkautflfsCQ3jLDCztQ"
+                  className="text-red-600 hover:text-red-700 transition-colors duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiYoutube size={32} />
+                </a>
+              </div>
+            </div>
+          </main>
+        </article>
+      ))}
+      <section className="w-full py-12  md:py-24 lg:py-32 bg-white dark:bg-gray-800 flex flex-col items-center justify-center">
+        <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
+            Continua leyendo, visita nuestras publicaciones mas recientes
+          </h2>
+          <div className="flex flex-col gap-5">
+            {blogs &&
+              blogs.map((element: Element, index: number) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <CardTitle>{element.attributes.title}</CardTitle>
+                    <ScrollArea className="h-20 w-full">
+                      <CardDescription>
+                        {element.attributes.description}
+                      </CardDescription>
+                    </ScrollArea>
+                  </CardHeader>
+                  <CardContent>
+                    {element.attributes.imageCover?.data?.attributes?.formats
+                      ?.large?.url && (
+                      <img
+                        src={
+                          element.attributes.imageCover.data.attributes.formats
+                            .large.url
+                        }
+                        alt={element.attributes.title || "Post image"}
+                        className="w-full h-auto object-cover rounded-md"
+                      />
+                    )}
+                  </CardContent>
+                  <CardFooter className="flex flex-row  justify-between mx-auto">
+                    <Link
+                      legacyBehavior
+                      href={`/blog/${element.attributes.slug}`}
+                      passHref
+                    >
+                      <Button variant="link">Read More</Button>
+                    </Link>
+
+                    <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
+                      <Heart />
+                      <p className="font-medium">{element.attributes.likes}</p>
+                    </div>
+                  </CardFooter>
+                </Card>
+              ))}
+            <Link legacyBehavior href="/blog">
+              <a className="flex flex-row gap-2 border my-5 p-3 rounded-lg justify-center items-center text-black w-full bg-white">
+                Ver todas las publicaciones
+              </a>
+            </Link>
           </div>
-        </section>
-      </div>
-    </Transition>
+        </div>
+      </section>
+    </div>
   );
 }

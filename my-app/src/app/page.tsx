@@ -59,7 +59,7 @@ export default async function Component() {
     <Transition>
       <div className="flex flex-col min-h-screen justify-center items-center">
         <main className="flex flex-col w-full ">
-          <section className="bg-gradient-to-b from-gray-50 to-white bg-opacity-70 w-full py-12  md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">
+          <section className="bg-gradient-to-b from-gray-100 to-white shadow-lg bg-opacity-70 w-full py-12  md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">
             <div className="container px-4 md:px-6">
               <div className="flex flex-col items-center space-y-4 text-center">
                 <div className="space-y-2">
@@ -99,7 +99,9 @@ export default async function Component() {
                   data.map((element: Element, index: number) => (
                     <Card key={index}>
                       <CardHeader>
-                        <CardTitle>{element.attributes.title}</CardTitle>
+                        <CardTitle className="h-4 overflow-hidden">
+                          {element.attributes.title}
+                        </CardTitle>
                         <ScrollArea className="h-20 w-full">
                           <CardDescription>
                             {element.attributes.description}
@@ -115,7 +117,7 @@ export default async function Component() {
                                 .formats.small.url
                             }
                             alt={element.attributes.title || "Post image"}
-                            className="w-full h-auto object-cover rounded-md"
+                            className="w-full h-52 object-cover rounded-md"
                           />
                         )}
                       </CardContent>
@@ -136,12 +138,12 @@ export default async function Component() {
                       </CardFooter>
                     </Card>
                   ))}
-                <Link legacyBehavior href="/blog">
-                  <a className="flex flex-row gap-2 border p-3 rounded-lg text-black w-fit bg-white">
-                    Ver todas las publicaciones
-                  </a>
-                </Link>
               </div>
+              <Link legacyBehavior href="/blog">
+                <a className="flex flex-row gap-2 border mt-5 p-3 rounded-lg text-black w-fit bg-white sm:w-fit h-fit">
+                  Ver todas las publicaciones
+                </a>
+              </Link>
             </div>
           </section>
           <section className="w-full py-12 bg-gradient-to-b from-gray-50 to-white bg-opacity-70 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">
@@ -154,7 +156,9 @@ export default async function Component() {
                   ft.map((element: Element, index: number) => (
                     <Card key={index}>
                       <CardHeader>
-                        <CardTitle>{element.attributes.title}</CardTitle>
+                        <CardTitle className="h-4 overflow-hidden">
+                          {element.attributes.title}
+                        </CardTitle>
                         <ScrollArea className="h-20 w-full">
                           <CardDescription>
                             {element.attributes.description}
@@ -170,7 +174,7 @@ export default async function Component() {
                                 .formats.small.url
                             }
                             alt={element.attributes.title || "Post image"}
-                            className="w-full h-auto object-cover rounded-md"
+                            className="w-full h-52 object-cover rounded-md"
                           />
                         )}
                       </CardContent>
@@ -191,12 +195,12 @@ export default async function Component() {
                       </CardFooter>
                     </Card>
                   ))}
-                <Link legacyBehavior href="/blog">
-                  <a className="flex flex-row gap-2 border p-3 rounded-lg text-black w-fit bg-white">
-                    Ver todas las publicaciones
-                  </a>
-                </Link>
               </div>
+              <Link legacyBehavior href="/blog">
+                <a className="flex flex-row gap-2 border mt-5 p-3 rounded-lg text-black w-fit bg-white sm:w-fit h-fit">
+                  Ver todas las publicaciones
+                </a>
+              </Link>
             </div>
           </section>
           <section className="w-full py-12 bg-slate-50 bg-opacity-70 md:py-24 lg:py-32 xl:py-48 flex flex-col items-center justify-center">

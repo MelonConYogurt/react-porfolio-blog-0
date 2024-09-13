@@ -64,7 +64,9 @@ async function Blog() {
               data.map((element: Element, index: number) => (
                 <Card key={index}>
                   <CardHeader>
-                    <CardTitle>{element.attributes.title}</CardTitle>
+                    <CardTitle className="h-4 overflow-hidden">
+                      {element.attributes.title}
+                    </CardTitle>
                     <ScrollArea className="h-20 w-full">
                       <CardDescription>
                         {element.attributes.description}
@@ -80,7 +82,7 @@ async function Blog() {
                             .small.url
                         }
                         alt={element.attributes.title || "Post image"}
-                        className="w-full h-auto object-cover rounded-md"
+                        className="w-full h-52 object-cover rounded-md"
                       />
                     )}
                   </CardContent>

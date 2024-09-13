@@ -14,11 +14,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {ScrollArea} from "@/components/ui/scroll-area";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
-import "highlight.js/styles/atom-one-dark.css";
 import Transition from "@/components/Transition";
+import AvatarAnimation from "@/components/AvatarAnimation";
+import ScrollAnimation from "@/components/ScrolAnimation";
 
 interface Element {
   attributes: {
@@ -64,16 +62,17 @@ async function About() {
   return (
     <Transition>
       <div className="flex flex-col justify-center items-center">
-        <header className="bg-gradient-to-b from-gray-50 to-white flex flex-col justify-center items-center w-full p-5">
+        <header className="bg-gradient-to-b from-gray-100 to-white flex flex-col justify-center items-center w-full p-5">
           <div className="flex flex-col gap-10 justify-center items-center text-black">
             <div>
-              <img
-                className="rounded-full"
-                src="https://res.cloudinary.com/divr5jb7h/image/upload/v1725936867/141779507_cbexnd.jpg"
-                alt="Profile picture"
+              <AvatarAnimation
+                src={
+                  "https://res.cloudinary.com/divr5jb7h/image/upload/v1725936867/141779507_cbexnd.jpg"
+                }
+                alt={"Profile picture"}
                 width={300}
                 height={300}
-              />
+              ></AvatarAnimation>
             </div>
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
               Alejandro Vélez Gómez
@@ -118,26 +117,29 @@ async function About() {
               </div>
             </div>
           </section>
-          <section className="flex flex-col justify-center items-center  w-full p-5 ">
-            <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white mt-20 mb-20">
-              Habilidades tecnicas
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {tg.map((element: Element, index: number) => (
-                <Card
-                  key={index}
-                  className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1"
-                >
-                  <CardContent className="p-4 h-full flex items-center justify-center">
-                    <h3 className="text-center font-medium">
-                      {element.attributes.name}
-                    </h3>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-          <section className="flex flex-col justify-center items-center  w-full p-5">
+          <ScrollAnimation>
+            <section className="flex flex-col justify-center items-center from-gray-50 to-white  w-full p-5 ">
+              <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white mt-20 mb-20">
+                Habilidades tecnicas
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {tg.map((element: Element, index: number) => (
+                  <Card
+                    key={index}
+                    className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1"
+                  >
+                    <CardContent className="p-4 h-full flex items-center justify-center">
+                      <h3 className="text-center font-medium">
+                        {element.attributes.name}
+                      </h3>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          </ScrollAnimation>
+
+          <section className="flex flex-col justify-center items-center  from-gray-50 to-white w-full p-5">
             <h2 className="mt-20 mb-20 text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               Educasion y certificasiones
             </h2>
@@ -185,12 +187,7 @@ async function About() {
                       <CardTitle>{element.attributes.title}</CardTitle>
                       <ScrollArea className="h-20 w-full">
                         <CardDescription>
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            rehypePlugins={[rehypeHighlight]}
-                          >
-                            {element.attributes.introduction}
-                          </ReactMarkdown>
+                          {element.attributes.introduction}
                         </CardDescription>
                       </ScrollArea>
                     </CardHeader>
@@ -220,6 +217,7 @@ async function About() {
             <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
               Intereses y pasatiempos
             </h2>
+            <ScrollAnimation></ScrollAnimation>
             <div className="flex flex-col gap-5 w-1/2">
               <Card>
                 <CardHeader>
