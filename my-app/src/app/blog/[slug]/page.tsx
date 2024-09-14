@@ -162,7 +162,6 @@ export default function Post({params}: PostProps) {
         console.error("Error al compartir:", error);
       }
     } else {
-      // Fallback para navegadores que no soportan Web Share API
       alert(
         "Lo siento, tu navegador no soporta la función de compartir. Puedes copiar el enlace manualmente."
       );

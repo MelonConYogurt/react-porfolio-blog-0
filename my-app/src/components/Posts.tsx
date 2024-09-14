@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-
 import {
   Card,
   CardContent,
@@ -9,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {ScrollArea} from "@/components/ui/scroll-area";
-import {Heart} from "lucide-react";
+import {Heart, Calendar, ArrowRight} from "lucide-react";
 import Link from "next/link";
 
 interface Element {
@@ -82,21 +81,14 @@ interface Data {
 
 function Posts({data}: Data) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {data &&
         data.map((element: Element, index: number) => (
-          <Card key={index}>
-            <CardHeader>
-              <CardTitle className="h-4 overflow-hidden">
-                {element.attributes.title}
-              </CardTitle>
-              <ScrollArea className="h-20 w-full">
-                <CardDescription>
-                  {element.attributes.description}
-                </CardDescription>
-              </ScrollArea>
-            </CardHeader>
-            <CardContent>
+          <Card
+            key={index}
+            className="overflow-hidden transition-all duration-300 hover:shadow-lg"
+          >
+            <div className="relative">
               {element.attributes.imageCover?.data?.attributes?.formats?.small
                 ?.url && (
                 <img
@@ -105,24 +97,48 @@ function Posts({data}: Data) {
                       .url
                   }
                   alt={element.attributes.title || "Post image"}
-                  className="w-full h-52 object-cover rounded-md"
+                  className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
                 />
               )}
-            </CardContent>
-            <CardFooter className="flex flex-row  justify-between mx-auto">
-              <Link
-                legacyBehavior
-                href={`/blog/${element.attributes.slug}`}
-                passHref
-              >
-                <a className="underline text-black hover:text-black">
-                  Continua leyendo
-                </a>
-              </Link>
-              <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
-                <Heart />
-                <p className="font-medium">{element.attributes.likes}</p>
+            </div>
+            <CardHeader>
+              <CardTitle className="text-xl font-bold line-clamp-2">
+                {element.attributes.title}
+              </CardTitle>
+              <div className="flex items-center text-sm text-muted-foreground gap-2">
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  {new Date(
+                    element.attributes.publishedAt || ""
+                  ).toLocaleDateString()}
+                </div>
+                <div className="text-black font-medium">
+                  {element.attributes.category}
+                </div>
               </div>
+            </CardHeader>
+            <CardContent>
+              <ScrollArea className="h-24">
+                <CardDescription className="text-sm">
+                  {element.attributes.description}
+                </CardDescription>
+              </ScrollArea>
+            </CardContent>
+            <CardFooter className="flex justify-between items-center">
+              <Link href={`/blog/${element.attributes.slug}`} passHref>
+                <div className="flex items-center text-primary hover:underline cursor-pointer">
+                  Continuar leyendo
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </div>
+              </Link>
+              {element.attributes.likes && (
+                <div className="flex items-center">
+                  <Heart className="w-5 h-5 text-red-500 mr-1" />
+                  <span className="font-medium">
+                    {element.attributes.likes}
+                  </span>
+                </div>
+              )}
             </CardFooter>
           </Card>
         ))}

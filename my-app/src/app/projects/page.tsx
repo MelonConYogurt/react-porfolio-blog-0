@@ -1,46 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 import GetProjects from "@/utils/GetProjects";
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
 import {SiGithub, SiYoutube} from "@icons-pack/react-simple-icons";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {ScrollArea} from "@/components/ui/scroll-area";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark.css";
 import Transition from "@/components/Transition";
 import Posts from "@/components/Posts";
-
-interface Element {
-  attributes: {
-    title?: string;
-    description?: string;
-    introduction?: string;
-    name?: string;
-    company?: string;
-    state?: string;
-    link?: string;
-    imageCover?: {
-      data?: {
-        attributes?: {
-          formats?: {
-            small?: {
-              url: string;
-            };
-          };
-        };
-      };
-    };
-  };
-}
 
 async function fetchProjects() {
   try {
