@@ -25,7 +25,7 @@ function AvatarAnimation({src, alt, width, height}: Props) {
         borderRadius: ["50%", "50%", "20%", "20%", "50%"],
       }}
       transition={{
-        duration: 1.5,
+        duration: 1.3,
         ease: "easeOut",
       }}
     />

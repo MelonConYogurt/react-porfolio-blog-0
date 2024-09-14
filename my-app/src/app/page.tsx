@@ -64,7 +64,9 @@ export default async function Component() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
                 Publicaciones recientes
               </h2>
-              <Posts data={data}></Posts>
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <Posts data={data}></Posts>
+              </div>
               <Link legacyBehavior href="/blog">
                 <a className="flex flex-row gap-2 border mt-5 p-3 rounded-lg text-black w-fit bg-white sm:w-fit h-fit">
                   Ver todas las publicaciones
@@ -77,7 +79,9 @@ export default async function Component() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
                 Publicaciones populares
               </h2>
-              <Posts data={ft}></Posts>
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <Posts data={ft}></Posts>
+              </div>
               <Link legacyBehavior href="/blog">
                 <a className="flex flex-row gap-2 border mt-5 p-3 rounded-lg text-black w-fit bg-white sm:w-fit h-fit">
                   Ver todas las publicaciones

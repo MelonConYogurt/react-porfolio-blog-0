@@ -89,7 +89,7 @@ interface Element {
 }
 
 interface Params {
-  slug?: string;
+  slug: string;
 }
 
 interface PostProps {

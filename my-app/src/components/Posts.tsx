@@ -81,7 +81,7 @@ interface Data {
 
 function Posts({data}: Data) {
   return (
-    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <>
       {data &&
         data.map((element: Element, index: number) => (
           <Card
@@ -142,7 +142,7 @@ function Posts({data}: Data) {
             </CardFooter>
           </Card>
         ))}
-    </div>
+    </>
   );
 }
 
