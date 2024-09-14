@@ -71,15 +71,18 @@ export default async function Component() {
                   </p>
                 </div>
                 <div className="space-x-4 flex flex-row gap-3">
-                  <Link
-                    legacyBehavior
-                    href={`/blog/${lt[0].attributes.slug}`}
-                    passHref
-                  >
-                    <a className="flex flex-row gap-2 border p-3 rounded-lg text-white w-fit bg-black">
-                      Ultima publicacion
-                    </a>
-                  </Link>
+                  {lt && lt.length > 0 && (
+                    <Link
+                      legacyBehavior
+                      href={`/blog/${lt[0].attributes.slug}`}
+                      passHref
+                    >
+                      <a className="flex flex-row gap-2 border p-3 rounded-lg text-white w-fit bg-black">
+                        Ultima publicacion
+                      </a>
+                    </Link>
+                  )}
+
                   <Link legacyBehavior href="/about">
                     <a className="flex flex-row gap-2 border p-3 rounded-lg text-black w-fit bg-white">
                       Sobre mi

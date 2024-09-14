@@ -37,7 +37,6 @@ export default function RootLayout({
                 src="https://res.cloudinary.com/divr5jb7h/image/upload/v1725936867/141779507_cbexnd.jpg"
                 alt="Profile picture"
               />
-              <p>Alejandro Vélez Gómez</p>
             </div>
             <div className="flex flex-row gap-4 justify-center items-center">
               <Link legacyBehavior href="/">
