@@ -124,6 +124,56 @@
       },
       "type": "biginteger",
       "default": "0"
+    },
+    "category": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "Desarrollo Web",
+        "Desarrollo Móvil",
+        "Inteligencia Artificial",
+        "Machine Learning",
+        "Desarrollo de Software",
+        "Programación Backend",
+        "Programación Frontend",
+        "Cloud Computing",
+        "DevOps",
+        "Bases de Datos",
+        "Seguridad Informática",
+        "Análisis de Datos",
+        "Internet de las Cosas (IoT)",
+        "Blockchain",
+        "Testing y QA",
+        "Herramientas de Desarrollo",
+        "Lenguajes de Programación",
+        "Diseño de Arquitecturas",
+        "Microservicios",
+        "Automatización",
+        "Ciberseguridad",
+        "APIs y Servicios Web",
+        "Desarrollo Ágil",
+        "Innovación Tecnológica",
+        "Emprendimiento en Tecnología",
+        "Realidad Aumentada y Virtual",
+        "Ciencia de Datos",
+        "Computación Cuántica",
+        "Big Data",
+        "Desarrollo de Videojuegos",
+        "Contenedores y Kubernetes",
+        "Desarrollo Full Stack",
+        "Frameworks de JavaScript",
+        "Sistemas Operativos",
+        "Optimización de Rendimiento",
+        "Desarrollo de Interfaces (UI/UX)",
+        "Open Source",
+        "Nuevas Tecnologías",
+        "Tendencias Tecnológicas"
+      ],
+      "required": true
     }
   }
 }

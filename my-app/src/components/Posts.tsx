@@ -27,6 +27,7 @@ interface Element {
     name?: string;
     slug?: string;
     likes?: number;
+    category?: string;
     imageCover?: {
       data?: {
         attributes?: {

@@ -17,6 +17,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark.css";
 import Transition from "@/components/Transition";
+import Posts from "@/components/Posts";
 
 interface Element {
   attributes: {
@@ -95,50 +96,7 @@ export default async function Project() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
             Proyectos
           </h2>
-          <div className="w-4/5  grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-10">
-            {data.map((element: Element, index: number) => (
-              <Card
-                key={index}
-                className="overflow-hidden transition-all duration-200 hover:shadow-lg"
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold">
-                    {element.attributes.title}
-                  </CardTitle>
-                  <ScrollArea className="h-20 w-full">
-                    <CardDescription>
-                      <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
-                        rehypePlugins={[rehypeHighlight]}
-                      >
-                        {element.attributes.introduction}
-                      </ReactMarkdown>
-                    </CardDescription>
-                  </ScrollArea>
-                </CardHeader>
-                <CardContent>
-                  {element.attributes.imageCover?.data?.attributes?.formats
-                    ?.small?.url && (
-                    <img
-                      src={
-                        element.attributes.imageCover.data.attributes.formats
-                          .small.url
-                      }
-                      alt={element.attributes.title || "Post image"}
-                      width={300}
-                      height={200}
-                      className="w-full h-1/2 object-cover rounded-md transition-transform duration-200 hover:scale-105"
-                    />
-                  )}
-                </CardContent>
-                <CardFooter>
-                  <Button variant="outline" className="w-full">
-                    Ver completo
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+          <Posts data={data}></Posts>
         </section>
       </div>
     </Transition>

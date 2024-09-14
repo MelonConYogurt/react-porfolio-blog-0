@@ -885,6 +885,55 @@ export interface ApiBlogBlog extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'0'>;
+    category: Attribute.Enumeration<
+      [
+        'Desarrollo Web',
+        'Desarrollo M\u00F3vil',
+        'Inteligencia Artificial',
+        'Machine Learning',
+        'Desarrollo de Software',
+        'Programaci\u00F3n Backend',
+        'Programaci\u00F3n Frontend',
+        'Cloud Computing',
+        'DevOps',
+        'Bases de Datos',
+        'Seguridad Inform\u00E1tica',
+        'An\u00E1lisis de Datos',
+        'Internet de las Cosas (IoT)',
+        'Blockchain',
+        'Testing y QA',
+        'Herramientas de Desarrollo',
+        'Lenguajes de Programaci\u00F3n',
+        'Dise\u00F1o de Arquitecturas',
+        'Microservicios',
+        'Automatizaci\u00F3n',
+        'Ciberseguridad',
+        'APIs y Servicios Web',
+        'Desarrollo \u00C1gil',
+        'Innovaci\u00F3n Tecnol\u00F3gica',
+        'Emprendimiento en Tecnolog\u00EDa',
+        'Realidad Aumentada y Virtual',
+        'Ciencia de Datos',
+        'Computaci\u00F3n Cu\u00E1ntica',
+        'Big Data',
+        'Desarrollo de Videojuegos',
+        'Contenedores y Kubernetes',
+        'Desarrollo Full Stack',
+        'Frameworks de JavaScript',
+        'Sistemas Operativos',
+        'Optimizaci\u00F3n de Rendimiento',
+        'Desarrollo de Interfaces (UI/UX)',
+        'Open Source',
+        'Nuevas Tecnolog\u00EDas',
+        'Tendencias Tecnol\u00F3gicas'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -999,7 +1048,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
         maxLength: 120;
       }>;
     imageCover: Attribute.Media<'images'> & Attribute.Required;
-    introduction: Attribute.Text & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     link: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

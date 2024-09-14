@@ -17,6 +17,7 @@ import {ScrollArea} from "@/components/ui/scroll-area";
 import Transition from "@/components/Transition";
 import AvatarAnimation from "@/components/AvatarAnimation";
 import ScrollAnimation from "@/components/ScrolAnimation";
+import Posts from "@/components/Posts";
 
 interface Element {
   attributes: {
@@ -180,44 +181,7 @@ async function About() {
             <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
               Proyectos
             </h2>
-            <div className="flex flex-col w-1/3 gap-5">
-              {data &&
-                data.map((element: Element, index: number) => (
-                  <Card key={index}>
-                    <CardHeader>
-                      <CardTitle>{element.attributes.title}</CardTitle>
-                      <ScrollArea className="h-20 w-full">
-                        <CardDescription>
-                          {element.attributes.introduction}
-                        </CardDescription>
-                      </ScrollArea>
-                    </CardHeader>
-                    <CardContent>
-                      {element.attributes.imageCover?.data?.attributes?.formats
-                        ?.small?.url && (
-                        <img
-                          src={
-                            element.attributes.imageCover.data.attributes
-                              .formats.small.url
-                          }
-                          alt={element.attributes.title || "Post image"}
-                          className="w-full h-auto object-cover rounded-md"
-                        />
-                      )}
-                    </CardContent>
-                    <CardFooter>
-                      <a
-                        href={element.attributes.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline text-black hover:text-black"
-                      >
-                        Ver completo
-                      </a>
-                    </CardFooter>
-                  </Card>
-                ))}
-            </div>
+            <Posts data={data}></Posts>
           </section>
           <section className="w-full py-12 mx-10 md:py-24 lg:py-32  flex flex-col items-center justify-center ">
             <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
