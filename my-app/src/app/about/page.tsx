@@ -26,7 +26,7 @@ interface Element {
     name?: string;
     company?: string;
     state?: string;
-    link?: string;
+    link: string;
     imageCover?: {
       data?: {
         attributes?: {
@@ -49,6 +49,7 @@ async function fetchData() {
       GetTg(),
       GetProjects(),
     ]);
+    console.log(data[0].attributes.imageCover);
     return {ct: ct || [], dt: dt || [], tg: tg || [], data: data || []};
   } catch (error) {
     console.error(error);
@@ -205,7 +206,11 @@ async function About() {
                       )}
                     </CardContent>
                     <CardFooter>
-                      <Link legacyBehavior href="#" passHref>
+                      <Link
+                        legacyBehavior
+                        href={element.attributes.link}
+                        passHref
+                      >
                         <Button variant="link">Ver completo</Button>
                       </Link>
                     </CardFooter>
@@ -217,7 +222,6 @@ async function About() {
             <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 mb-10">
               Intereses y pasatiempos
             </h2>
-            <ScrollAnimation></ScrollAnimation>
             <div className="flex flex-col gap-5 w-1/2">
               <Card>
                 <CardHeader>
