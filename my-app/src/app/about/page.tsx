@@ -206,13 +206,14 @@ async function About() {
                       )}
                     </CardContent>
                     <CardFooter>
-                      <Link
-                        legacyBehavior
+                      <a
                         href={element.attributes.link}
-                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline text-black hover:text-black"
                       >
-                        <Button variant="link">Ver completo</Button>
-                      </Link>
+                        Ver completo
+                      </a>
                     </CardFooter>
                   </Card>
                 ))}

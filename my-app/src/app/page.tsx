@@ -1,21 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {Input} from "@/components/ui/input";
-import {ScrollArea} from "@/components/ui/scroll-area";
 import GetPost from "@/utils/GetPosts";
 import GetLastPost from "@/utils/GetLatsPost";
 import GetFeacturePost from "@/utils/GetFeaturePost";
-import {Heart} from "lucide-react";
 import Transition from "@/components/Transition";
+import Posts from "@/components/Posts";
+import Link from "next/link";
 
 async function getData() {
   try {
@@ -29,27 +17,6 @@ async function getData() {
     console.log(error);
     return {data: [], lt: [], ft: []};
   }
-}
-
-interface Element {
-  attributes: {
-    title: string;
-    description: string;
-    name?: string;
-    slug?: string;
-    likes?: number;
-    imageCover?: {
-      data?: {
-        attributes?: {
-          formats?: {
-            small?: {
-              url: string;
-            };
-          };
-        };
-      };
-    };
-  };
 }
 
 export default async function Component() {
@@ -97,51 +64,7 @@ export default async function Component() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
                 Publicaciones recientes
               </h2>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {data &&
-                  data.map((element: Element, index: number) => (
-                    <Card key={index}>
-                      <CardHeader>
-                        <CardTitle className="h-4 overflow-hidden">
-                          {element.attributes.title}
-                        </CardTitle>
-                        <ScrollArea className="h-20 w-full">
-                          <CardDescription>
-                            {element.attributes.description}
-                          </CardDescription>
-                        </ScrollArea>
-                      </CardHeader>
-                      <CardContent>
-                        {element.attributes.imageCover?.data?.attributes
-                          ?.formats?.small?.url && (
-                          <img
-                            src={
-                              element.attributes.imageCover.data.attributes
-                                .formats.small.url
-                            }
-                            alt={element.attributes.title || "Post image"}
-                            className="w-full h-52 object-cover rounded-md"
-                          />
-                        )}
-                      </CardContent>
-                      <CardFooter className="flex flex-row  justify-between mx-auto">
-                        <Link
-                          legacyBehavior
-                          href={`/blog/${element.attributes.slug}`}
-                          passHref
-                        >
-                          <Button variant="link">Read More</Button>
-                        </Link>
-                        <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
-                          <Heart />
-                          <p className="font-medium">
-                            {element.attributes.likes}
-                          </p>
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  ))}
-              </div>
+              <Posts data={data}></Posts>
               <Link legacyBehavior href="/blog">
                 <a className="flex flex-row gap-2 border mt-5 p-3 rounded-lg text-black w-fit bg-white sm:w-fit h-fit">
                   Ver todas las publicaciones
@@ -154,51 +77,7 @@ export default async function Component() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
                 Publicaciones populares
               </h2>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {ft &&
-                  ft.map((element: Element, index: number) => (
-                    <Card key={index}>
-                      <CardHeader>
-                        <CardTitle className="h-4 overflow-hidden">
-                          {element.attributes.title}
-                        </CardTitle>
-                        <ScrollArea className="h-20 w-full">
-                          <CardDescription>
-                            {element.attributes.description}
-                          </CardDescription>
-                        </ScrollArea>
-                      </CardHeader>
-                      <CardContent>
-                        {element.attributes.imageCover?.data?.attributes
-                          ?.formats?.small?.url && (
-                          <img
-                            src={
-                              element.attributes.imageCover.data.attributes
-                                .formats.small.url
-                            }
-                            alt={element.attributes.title || "Post image"}
-                            className="w-full h-52 object-cover rounded-md"
-                          />
-                        )}
-                      </CardContent>
-                      <CardFooter className="flex flex-row  justify-between mx-auto">
-                        <Link
-                          legacyBehavior
-                          href={`/blog/${element.attributes.slug}`}
-                          passHref
-                        >
-                          <Button variant="link">Read More</Button>
-                        </Link>
-                        <div className="flex flex-row gap-1 justify-center items-center overflow-hidden">
-                          <Heart />
-                          <p className="font-medium">
-                            {element.attributes.likes}
-                          </p>
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  ))}
-              </div>
+              <Posts data={ft}></Posts>
               <Link legacyBehavior href="/blog">
                 <a className="flex flex-row gap-2 border mt-5 p-3 rounded-lg text-black w-fit bg-white sm:w-fit h-fit">
                   Ver todas las publicaciones
@@ -211,10 +90,7 @@ export default async function Component() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-black">
                 Stay Updated
               </h2>
-              <div className="mx-auto max-w-sm space-y-4">
-                <Input placeholder="Enter your email" type="email" />
-                <Button className="w-full">Subscribe to Newsletter</Button>
-              </div>
+              <div className="mx-auto max-w-sm space-y-4"></div>
             </div>
           </section>
         </main>
