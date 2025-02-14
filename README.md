@@ -1,6 +1,4 @@
----
 
-# Link de mi blog:
 
 
 [https//frontend-blog-pearl.vercel.app/](https://frontend-blog-pearl.vercel.app/)
